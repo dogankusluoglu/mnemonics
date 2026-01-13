@@ -144,7 +144,29 @@ export const GridViewport: React.FC = () => {
     setActiveCell({ x, y });
   };
 
-  const handleDoubleClick = (x: number, y: number) => {
+  const handleGridClick = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    
+    const rect = containerRef.current.getBoundingClientRect();
+    const { scale, positionX, positionY } = camera;
+    
+    // Position relative to the viewport top-left in screen pixels
+    const screenX = e.clientX - rect.left;
+    const screenY = e.clientY - rect.top;
+    
+    // Convert to content coordinates (ignoring camera pan/zoom)
+    const contentX = (screenX - positionX) / scale;
+    const contentY = (screenY - positionY) / scale;
+    
+    // Convert to grid coordinates
+    const gridX = Math.floor(contentX / CELL_SIZE);
+    const gridY = Math.floor(contentY / CELL_SIZE);
+    
+    handleCellClick(gridX, gridY, e);
+  };
+
+  const handleDoubleClick = (x: number, y: number, e: React.MouseEvent) => {
+    e.stopPropagation();
     const cellKey = getCoordKey(x, y);
     const cell = activeLayer.cellsByKey[cellKey];
     if (cell && cell.wordIds.length > 0) {
@@ -245,71 +267,92 @@ export const GridViewport: React.FC = () => {
   }, [activeCell, currentDraft, activeDirection]);
 
   const renderCells = () => {
-    const elements = [];
-    for (let y = visibleRange.top; y <= visibleRange.bottom; y++) {
-      for (let x = visibleRange.left; x <= visibleRange.right; x++) {
-        const key = getCoordKey(x, y);
-        const cell = activeLayer.cellsByKey[key];
-        const isDraft = draftFootprint.some(c => c.x === x && c.y === y);
-        const draftCharIndex = draftFootprint.findIndex(c => c.x === x && c.y === y);
-        const isActive = activeCell?.x === x && activeCell?.y === y;
-        
-        let char = cell?.char || '';
-        if (isDraft) char = currentDraft[draftCharIndex];
+    const renderedKeys = new Set<string>();
+    const elements: React.ReactNode[] = [];
 
-        const isInvalid = cell?.wordIds.some(id => invalidWordIds.has(id));
-        const isSelected = cell?.wordIds.includes(selectedWordId || '');
+    const addCell = (x: number, y: number) => {
+      const key = getCoordKey(x, y);
+      if (renderedKeys.has(key)) return;
+      
+      const cell = activeLayer.cellsByKey[key];
+      const isDraft = draftFootprint.some(c => c.x === x && c.y === y);
+      const draftCharIndex = draftFootprint.findIndex(c => c.x === x && c.y === y);
+      const isActive = activeCell?.x === x && activeCell?.y === y;
+      
+      // If none of these, it's an empty background cell - don't render it!
+      if (!cell && !isDraft && !isActive) return;
+
+      let char = cell?.char || '';
+      if (isDraft) char = currentDraft[draftCharIndex];
+
+      const isInvalid = cell?.wordIds.some(id => invalidWordIds.has(id));
+      const isSelected = cell?.wordIds.includes(selectedWordId || '');
+      
+      const ladderWord = cell?.wordIds
+        ?.map(id => activeLayer.words.find(w => w.id === id))
+        .find(w => w?.ladderLayerId);
         
-        const ladderWord = cell?.wordIds
-          .map(id => activeLayer.words.find(w => w.id === id))
-          .find(w => w?.ladderLayerId);
+      const hasLadder = !!ladderWord;
+      const subLayer = ladderWord?.ladderLayerId ? doc.layersById[ladderWord.ladderLayerId] : null;
+
+      elements.push(
+        <div
+          key={key}
+          onClick={(e) => handleCellClick(x, y, e)}
+          onDoubleClick={(e) => handleDoubleClick(x, y, e)}
+          className={cn(
+            "absolute flex items-center justify-center border border-gray-200 text-lg font-mono cursor-pointer select-none overflow-hidden bg-white",
+            isActive && "bg-black text-white border-black z-20 scale-105",
+            isDraft && !isActive && "bg-gray-100 border-black z-10",
+            isInvalid && "bg-red-500 text-white border-red-700",
+            isSelected && !isActive && !isInvalid && "bg-yellow-200 border-yellow-500",
+            hasLadder && !isActive && !isInvalid && !isSelected && "border-2 border-black"
+          )}
+          style={{
+            width: CELL_SIZE,
+            height: CELL_SIZE,
+            left: x * CELL_SIZE,
+            top: y * CELL_SIZE,
+            fontSize: camera.scale < 0.6 ? 0 : undefined,
+          }}
+        >
+          {hasLadder && subLayer && !isActive && camera.scale > 0.7 && (
+            <div className="absolute inset-0 opacity-20 pointer-events-none grid grid-cols-4 grid-rows-4 gap-px bg-gray-200">
+              {Object.values(subLayer.cellsByKey).slice(0, 16).map((subCell, i) => (
+                <div key={i} className="bg-black w-full h-full" style={{ opacity: subCell.char ? 1 : 0 }} />
+              ))}
+            </div>
+          )}
           
-        const hasLadder = !!ladderWord;
-        const subLayer = ladderWord?.ladderLayerId ? doc.layersById[ladderWord.ladderLayerId] : null;
+          <span className="relative z-10" style={{ opacity: camera.scale < 0.6 ? 0 : 1 }}>
+            {char}
+          </span>
+          
+          {camera.scale > 0.5 && cell?.wordIds.some(id => {
+            const w = activeLayer.words.find(word => word.id === id);
+            return w && useMnemonicStore.getState().dictionary.has(w.text.toUpperCase());
+          }) && !isActive && !isInvalid && (
+            <div className="absolute bottom-0 right-0 w-1.5 h-1.5 bg-blue-500 rounded-full m-0.5" />
+          )}
+        </div>
+      );
+      renderedKeys.add(key);
+    };
 
-        elements.push(
-          <div
-            key={key}
-            onClick={(e) => handleCellClick(x, y, e)}
-            onDoubleClick={() => handleDoubleClick(x, y)}
-            className={cn(
-              "absolute flex items-center justify-center border border-gray-200 text-lg font-mono cursor-pointer select-none overflow-hidden bg-white",
-              isActive && "bg-black text-white border-black z-20 scale-105",
-              isDraft && !isActive && "bg-gray-100 border-black z-10",
-              isInvalid && "bg-red-500 text-white border-red-700",
-              isSelected && !isActive && !isInvalid && "bg-yellow-200 border-yellow-500",
-              hasLadder && !isActive && !isInvalid && !isSelected && "border-2 border-black"
-            )}
-            style={{
-              width: CELL_SIZE,
-              height: CELL_SIZE,
-              left: x * CELL_SIZE,
-              top: y * CELL_SIZE,
-              fontSize: camera.scale < 0.6 ? 0 : undefined,
-            }}
-          >
-            {hasLadder && subLayer && !isActive && camera.scale > 0.7 && (
-              <div className="absolute inset-0 opacity-20 pointer-events-none grid grid-cols-4 grid-rows-4 gap-px bg-gray-200">
-                {Object.values(subLayer.cellsByKey).slice(0, 16).map((subCell, i) => (
-                  <div key={i} className="bg-black w-full h-full" style={{ opacity: subCell.char ? 1 : 0 }} />
-                ))}
-              </div>
-            )}
-            
-            <span className="relative z-10" style={{ opacity: camera.scale < 0.6 ? 0 : 1 }}>
-              {char}
-            </span>
-            
-            {camera.scale > 0.5 && cell?.wordIds.some(id => {
-              const w = activeLayer.words.find(word => word.id === id);
-              return w && useMnemonicStore.getState().dictionary.has(w.text.toUpperCase());
-            }) && !isActive && !isInvalid && (
-              <div className="absolute bottom-0 right-0 w-1.5 h-1.5 bg-blue-500 rounded-full m-0.5" />
-            )}
-          </div>
-        );
+    // 1. Always render active cell
+    if (activeCell) addCell(activeCell.x, activeCell.y);
+
+    // 2. Render all cells in the draft
+    draftFootprint.forEach(c => addCell(c.x, c.y));
+
+    // 3. Render all occupied cells within the visible range
+    Object.keys(activeLayer.cellsByKey).forEach(key => {
+      const [x, y] = key.split(',').map(Number);
+      if (x >= visibleRange.left && x <= visibleRange.right && y >= visibleRange.top && y <= visibleRange.bottom) {
+        addCell(x, y);
       }
-    }
+    });
+
     return elements;
   };
 
@@ -355,30 +398,34 @@ export const GridViewport: React.FC = () => {
           wrapperStyle={{ width: '100%', height: '100%' }}
           contentStyle={{ width: '100%', height: '100%' }}
         >
-          {/* Grid Background */}
+          {/* Grid Background & Click Surface */}
           <div 
-            className="absolute pointer-events-none"
+            className="absolute cursor-crosshair"
             style={{
-              width: '10000px', // Large enough to cover visible area
-              height: '10000px',
-              left: '-5000px',
-              top: '-5000px',
+              width: '100000px',
+              height: '100000px',
+              left: '-50000px',
+              top: '-50000px',
+              backgroundColor: 'white',
               backgroundImage: `
-                linear-gradient(to right, #f3f4f6 1px, transparent 1px),
-                linear-gradient(to bottom, #f3f4f6 1px, transparent 1px)
+                linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+                linear-gradient(to bottom, #e5e7eb 1px, transparent 1px)
               `,
               backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
               backgroundPosition: '0 0',
             }}
+            onClick={handleGridClick}
           />
 
-          <div className="relative">
-            {renderCells()}
+          <div className="relative pointer-events-none">
+            <div className="pointer-events-auto">
+              {renderCells()}
+            </div>
             
             {activeLayer.comment && commentsVisible && (
               <div 
                 className={cn(
-                  "absolute z-30 transition-opacity duration-300",
+                  "absolute z-30 transition-opacity duration-300 pointer-events-auto",
                   currentDraft ? "opacity-10" : "opacity-100"
                 )}
                 style={{

@@ -5,41 +5,54 @@ import { Layers, Trash2, Info, Keyboard, MousePointer2, Star, CheckCircle2, Mess
 import { getOverlapCount } from '../model/validator';
 
 export const WordList: React.FC = () => {
-  const { doc, activeLayerId, selectedWordId, setSelectedWord, deleteWord, dictionary, setLayerComment } = useMnemonicStore();
+  const { doc, activeLayerId, selectedWordId, setSelectedWord, deleteWord, dictionary, setLayerComment, helpVisible, setHelpVisible } = useMnemonicStore();
   const activeLayer = doc.layersById[activeLayerId];
 
   return (
     <div className="w-80 border-l-4 border-black bg-white flex flex-col z-40 h-full overflow-hidden">
       {/* How it Works / Help Section */}
-      <div className="p-4 bg-black text-white space-y-3 shrink-0">
-        <div className="flex items-center gap-2 border-b border-white/30 pb-2">
-          <Info size={18} />
-          <h2 className="font-bold uppercase tracking-tighter text-lg">How it Works</h2>
-        </div>
-        <p className="text-[11px] leading-relaxed opacity-90 font-mono">
-          Create an <span className="font-bold underline text-yellow-400">Engram</span>: a visual memory shape. 
-          Interlock words in a sequence. <span className="underline">Stability</span> increases with chain length, extra interlocks (★), and nested layers.
-        </p>
-        
-        <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
-          <div className="space-y-1">
-            <div className="flex items-center gap-1 font-bold"><Keyboard size={10}/> KEYS</div>
-            <ul className="opacity-70">
-              <li>[TYPE] Letters</li>
-              <li>[R] Rotate</li>
-              <li>[ENTER] Save</li>
-              <li>[ESC] Cancel</li>
-            </ul>
+      <div className="shrink-0 flex flex-col border-b-2 border-black">
+        <button 
+          onClick={() => setHelpVisible(!helpVisible)}
+          className="flex items-center justify-between p-4 bg-black text-white hover:bg-gray-900 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <Info size={18} />
+            <h2 className="font-bold uppercase tracking-tighter text-lg">How it Works</h2>
           </div>
-          <div className="space-y-1">
-            <div className="flex items-center gap-1 font-bold"><MousePointer2 size={10}/> MOUSE</div>
-            <ul className="opacity-70">
-              <li>[ALT+DRAG] Pan</li>
-              <li>[SCROLL] Zoom</li>
-              <li>[DBL-CLK] Drill</li>
-            </ul>
+          <div className="text-[10px] font-black opacity-50 uppercase tracking-widest">
+            {helpVisible ? 'Hide' : 'Show'}
           </div>
-        </div>
+        </button>
+
+        {helpVisible && (
+          <div className="p-4 bg-black text-white space-y-3 border-t border-white/20">
+            <p className="text-[11px] leading-relaxed opacity-90 font-mono">
+              Create an <span className="font-bold underline text-yellow-400">Engram</span>: a visual memory shape. 
+              Interlock words in a sequence. <span className="underline">Stability</span> increases with chain length, extra interlocks (★), and nested layers.
+            </p>
+            
+            <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
+              <div className="space-y-1">
+                <div className="flex items-center gap-1 font-bold"><Keyboard size={10}/> KEYS</div>
+                <ul className="opacity-70">
+                  <li>[TYPE] Letters</li>
+                  <li>[R] Rotate</li>
+                  <li>[ENTER] Save</li>
+                  <li>[ESC] Cancel</li>
+                </ul>
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center gap-1 font-bold"><MousePointer2 size={10}/> MOUSE</div>
+                <ul className="opacity-70">
+                  <li>[ALT+DRAG] Pan</li>
+                  <li>[SCROLL] Zoom</li>
+                  <li>[DBL-CLK] Drill</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="p-3 border-b-2 border-black font-bold uppercase tracking-widest text-xs bg-gray-50 shrink-0">

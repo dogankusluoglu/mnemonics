@@ -56,6 +56,7 @@ interface MnemonicState {
   selectedWordId: string | null;
   pathViewEnabled: boolean;
   commentsVisible: boolean;
+  helpVisible: boolean;
   
   // Drafting state (current word being typed)
   currentDraft: string;
@@ -85,6 +86,7 @@ interface MnemonicActions {
   setSelectedWord: (wordId: string | null) => void;
   setPathViewEnabled: (enabled: boolean) => void;
   setCommentsVisible: (visible: boolean) => void;
+  setHelpVisible: (visible: boolean) => void;
   setCamera: (camera: Partial<MnemonicState['camera']>) => void;
   
   // Editing
@@ -136,6 +138,7 @@ export const useMnemonicStore = create<MnemonicState & MnemonicActions>((set, ge
   selectedWordId: null,
   pathViewEnabled: false,
   commentsVisible: true,
+  helpVisible: true,
   currentDraft: '',
   camera: { scale: 1, positionX: 0, positionY: 0 },
   dictionary: new Set(),
@@ -184,6 +187,8 @@ export const useMnemonicStore = create<MnemonicState & MnemonicActions>((set, ge
   setPathViewEnabled: (enabled) => set({ pathViewEnabled: enabled }),
   
   setCommentsVisible: (visible) => set({ commentsVisible: visible }),
+  
+  setHelpVisible: (visible) => set({ helpVisible: visible }),
   
   setCamera: (cameraUpdate) => set((state) => ({ 
     camera: { ...state.camera, ...cameraUpdate } 
