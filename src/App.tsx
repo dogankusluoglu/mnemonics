@@ -4,18 +4,54 @@ import { Toolbar } from './components/Toolbar';
 import { Breadcrumbs } from './components/Breadcrumbs';
 import { WordList } from './components/WordList';
 import { EngramRoots } from './components/EngramRoots';
+import { WelcomeModal } from './components/WelcomeModal';
+import { useMnemonicStore } from './store/useMnemonicStore';
+import { useEffect } from 'react';
 
 function App() {
+  const { leftPanelOpen, rightPanelOpen, closePanels, theme } = useMnemonicStore();
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
   return (
-    <div className="flex flex-col h-screen w-full bg-white font-mono text-black selection:bg-black selection:text-white">
+    <div className="flex flex-col h-screen w-full bg-white dark:bg-[#0a0a0a] font-mono text-black dark:text-white selection:bg-black dark:selection:bg-white selection:text-white dark:selection:text-black overflow-hidden">
       <Toolbar />
+      <WelcomeModal />
       <Breadcrumbs />
-      <div className="flex flex-grow overflow-hidden">
-        <EngramRoots />
-        <main className="flex-grow relative">
+      <div className="flex flex-grow relative overflow-hidden">
+        {/* Mobile Backdrop */}
+        {(leftPanelOpen || rightPanelOpen) && (
+          <div 
+            className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-[2px] z-30 transition-opacity"
+            onClick={closePanels}
+          />
+        )}
+
+        {/* Left Panel (Engram Roots) */}
+        <aside className={`
+          fixed md:relative z-40 h-full transition-transform duration-300 ease-in-out border-r border-black dark:border-white/20
+          ${leftPanelOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+        `}>
+          <EngramRoots />
+        </aside>
+
+        <main className="flex-grow relative overflow-hidden">
           <GridViewport />
         </main>
-        <WordList />
+
+        {/* Right Panel (Word List) */}
+        <aside className={`
+          fixed md:relative right-0 z-40 h-full transition-transform duration-300 ease-in-out border-l border-black dark:border-white/20
+          ${rightPanelOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
+        `}>
+          <WordList />
+        </aside>
       </div>
     </div>
   );

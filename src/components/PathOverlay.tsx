@@ -5,7 +5,7 @@ import { useMnemonicStore } from '../store/useMnemonicStore';
 const CELL_SIZE = 40;
 
 export const PathOverlay: React.FC<{ width: number; height: number }> = () => {
-  const { doc, activeLayerId, pathViewEnabled } = useMnemonicStore();
+  const { doc, activeLayerId, pathViewEnabled, theme } = useMnemonicStore();
   const activeLayer = doc.layersById[activeLayerId];
 
   const points = useMemo(() => {
@@ -44,9 +44,9 @@ export const PathOverlay: React.FC<{ width: number; height: number }> = () => {
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
         <linearGradient id="pathGradient" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#000" />
-          <stop offset="50%" stopColor="#666" />
-          <stop offset="100%" stopColor="#000" />
+          <stop offset="0%" stopColor={theme === 'dark' ? '#fff' : '#000'} />
+          <stop offset="50%" stopColor={theme === 'dark' ? '#aaa' : '#666'} />
+          <stop offset="100%" stopColor={theme === 'dark' ? '#fff' : '#000'} />
           <animate attributeName="x1" from="-100%" to="100%" dur="3s" repeatCount="indefinite" />
           <animate attributeName="x2" from="0%" to="200%" dur="3s" repeatCount="indefinite" />
         </linearGradient>
@@ -56,7 +56,7 @@ export const PathOverlay: React.FC<{ width: number; height: number }> = () => {
       <polyline
         points={points}
         fill="none"
-        stroke="black"
+        stroke={theme === 'dark' ? 'white' : 'black'}
         strokeWidth={6}
         strokeOpacity="0.1"
         filter="url(#glow)"
@@ -87,15 +87,15 @@ export const PathOverlay: React.FC<{ width: number; height: number }> = () => {
               cx={gridX}
               cy={gridY}
               r={6}
-              fill="white"
-              stroke="black"
+              fill={theme === 'dark' ? '#0a0a0a' : 'white'}
+              stroke={theme === 'dark' ? 'white' : 'black'}
               strokeWidth={1}
             />
             <circle
               cx={gridX}
               cy={gridY}
               r={3}
-              fill="black"
+              fill={theme === 'dark' ? 'white' : 'black'}
               className="animate-ping"
               style={{ animationDuration: '3s' }}
             />

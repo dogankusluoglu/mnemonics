@@ -57,6 +57,11 @@ interface MnemonicState {
   pathViewEnabled: boolean;
   commentsVisible: boolean;
   helpVisible: boolean;
+  welcomeModalVisible: boolean;
+  
+  // Mobile Panel State
+  leftPanelOpen: boolean;
+  rightPanelOpen: boolean;
   
   // Drafting state (current word being typed)
   currentDraft: string;
@@ -64,6 +69,9 @@ interface MnemonicState {
   // Camera state
   camera: { scale: number; positionX: number; positionY: number };
   
+  // Theme
+  theme: 'light' | 'dark';
+
   // Dictionary
   dictionary: Set<string>;
 
@@ -87,7 +95,14 @@ interface MnemonicActions {
   setPathViewEnabled: (enabled: boolean) => void;
   setCommentsVisible: (visible: boolean) => void;
   setHelpVisible: (visible: boolean) => void;
+  setWelcomeModalVisible: (visible: boolean) => void;
   setCamera: (camera: Partial<MnemonicState['camera']>) => void;
+  toggleTheme: () => void;
+  
+  // Mobile Navigation
+  toggleLeftPanel: () => void;
+  toggleRightPanel: () => void;
+  closePanels: () => void;
   
   // Editing
   typeChar: (char: string) => void;
@@ -139,8 +154,12 @@ export const useMnemonicStore = create<MnemonicState & MnemonicActions>((set, ge
   pathViewEnabled: false,
   commentsVisible: true,
   helpVisible: true,
+  welcomeModalVisible: true,
+  leftPanelOpen: false,
+  rightPanelOpen: false,
   currentDraft: '',
   camera: { scale: 1, positionX: 0, positionY: 0 },
+  theme: (localStorage.getItem('theme') as 'light' | 'dark') || 'dark',
   dictionary: new Set(),
   past: [],
   future: [],
@@ -190,9 +209,34 @@ export const useMnemonicStore = create<MnemonicState & MnemonicActions>((set, ge
   
   setHelpVisible: (visible) => set({ helpVisible: visible }),
   
+  setWelcomeModalVisible: (visible) => set({ welcomeModalVisible: visible }),
+  
   setCamera: (cameraUpdate) => set((state) => ({ 
     camera: { ...state.camera, ...cameraUpdate } 
   })),
+
+  toggleTheme: () => set((state) => {
+    const newTheme = state.theme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    return { theme: newTheme };
+  }),
+
+  toggleLeftPanel: () => set((state) => ({ 
+    leftPanelOpen: !state.leftPanelOpen,
+    rightPanelOpen: false 
+  })),
+  
+  toggleRightPanel: () => set((state) => ({ 
+    rightPanelOpen: !state.rightPanelOpen,
+    leftPanelOpen: false 
+  })),
+  
+  closePanels: () => set({ leftPanelOpen: false, rightPanelOpen: false }),
 
   typeChar: (char) => set((state) => {
     if (!state.activeCell) return state;

@@ -45,10 +45,25 @@ export const GridViewport: React.FC = () => {
     undo,
     redo,
     commentsVisible,
-    setLayerCommentPos
+    setLayerCommentPos,
+    closePanels,
+    theme
   } = useMnemonicStore();
 
   const activeLayer = doc.layersById[activeLayerId];
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Focus the hidden input whenever an active cell is selected to trigger mobile keyboard
+  useEffect(() => {
+    if (activeCell && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [activeCell]);
+
+  // Tap-vs-drag threshold for mobile selection
+  const touchStartRef = useRef<{ x: number, y: number, time: number } | null>(null);
+  const lastTapRef = useRef<{ x: number, y: number, time: number } | null>(null);
 
   const defaultCommentAnchor = useMemo(() => {
     if (activeLayer.words.length === 0) return { x: 0, y: -3 }; // Shifted up 1 more unit
@@ -72,7 +87,7 @@ export const GridViewport: React.FC = () => {
   useEffect(() => {
     if (!isDraggingMemo) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handlePointerMove = (e: PointerEvent) => {
       const drag = memoDragRef.current;
       if (!drag) return;
 
@@ -92,7 +107,7 @@ export const GridViewport: React.FC = () => {
       setMemoDragPos(next);
     };
 
-    const handleMouseUp = () => {
+    const handlePointerUp = () => {
       const pos = memoDragPosRef.current ?? activeLayer.commentPos ?? defaultCommentAnchor;
       // Persist with a little rounding to keep JSON stable/readable.
       const rounded = { x: Math.round(pos.x * 100) / 100, y: Math.round(pos.y * 100) / 100 };
@@ -104,11 +119,11 @@ export const GridViewport: React.FC = () => {
       setMemoDragPos(null);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointerup', handlePointerUp);
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerup', handlePointerUp);
     };
   }, [
     isDraggingMemo,
@@ -124,13 +139,16 @@ export const GridViewport: React.FC = () => {
   }, [activeLayer.words]);
 
   // Click on a cell to start/select
-  const handleCellClick = (x: number, y: number, e: React.MouseEvent) => {
+  const handleCellClick = (x: number, y: number, e: React.MouseEvent | React.PointerEvent) => {
     e.stopPropagation();
     
     // Explicitly blur any active input/textarea to return focus to the grid
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
+
+    // Close mobile drawers when interacting with the grid
+    closePanels();
 
     const cellKey = getCoordKey(x, y);
     const cell = activeLayer.cellsByKey[cellKey];
@@ -145,6 +163,13 @@ export const GridViewport: React.FC = () => {
   };
 
   const handleGridClick = (e: React.MouseEvent) => {
+    // If we're on a touch device and this was a drag, don't trigger click logic
+    if (touchStartRef.current) {
+      const dx = Math.abs(e.clientX - touchStartRef.current.x);
+      const dy = Math.abs(e.clientY - touchStartRef.current.y);
+      if (dx > 5 || dy > 5) return;
+    }
+
     if (!containerRef.current) return;
     
     const rect = containerRef.current.getBoundingClientRect();
@@ -162,10 +187,25 @@ export const GridViewport: React.FC = () => {
     const gridX = Math.floor(contentX / CELL_SIZE);
     const gridY = Math.floor(contentY / CELL_SIZE);
     
+    // Handle double-tap/drill detection for mobile
+    const now = Date.now();
+    if (lastTapRef.current) {
+      const tapDx = Math.abs(e.clientX - lastTapRef.current.x);
+      const tapDy = Math.abs(e.clientY - lastTapRef.current.y);
+      const tapDt = now - lastTapRef.current.time;
+      
+      if (tapDx < 20 && tapDy < 20 && tapDt < 300) {
+        handleDoubleClick(gridX, gridY, e);
+        lastTapRef.current = null;
+        return;
+      }
+    }
+    lastTapRef.current = { x: e.clientX, y: e.clientY, time: now };
+
     handleCellClick(gridX, gridY, e);
   };
 
-  const handleDoubleClick = (x: number, y: number, e: React.MouseEvent) => {
+  const handleDoubleClick = (x: number, y: number, e: React.MouseEvent | React.PointerEvent) => {
     e.stopPropagation();
     const cellKey = getCoordKey(x, y);
     const cell = activeLayer.cellsByKey[cellKey];
@@ -210,14 +250,24 @@ export const GridViewport: React.FC = () => {
         cancelDraft();
       } else if (e.key.length === 1 && e.key.match(/[a-zA-Z0-9 ]/)) {
         typeChar(e.key.toUpperCase());
-      } else if (e.key.toLowerCase() === 'r') {
-        toggleDirection();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeCell, typeChar, backspace, commitWord, cancelDraft, toggleDirection, undo, redo]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (val.length > 0) {
+      const char = val[val.length - 1].toUpperCase();
+      if (char.match(/[A-Z0-9 ]/)) {
+        typeChar(char);
+      }
+      // Reset input value so we can keep detecting changes
+      e.target.value = '';
+    }
+  };
 
   // Viewport size for virtualization
   const [viewport, setViewport] = useState({ width: 0, height: 0 });
@@ -301,12 +351,19 @@ export const GridViewport: React.FC = () => {
           onClick={(e) => handleCellClick(x, y, e)}
           onDoubleClick={(e) => handleDoubleClick(x, y, e)}
           className={cn(
-            "absolute flex items-center justify-center border border-gray-200 text-lg font-mono cursor-pointer select-none overflow-hidden bg-white",
-            isActive && "bg-black text-white border-black z-20 scale-105",
-            isDraft && !isActive && "bg-gray-100 border-black z-10",
-            isInvalid && "bg-red-500 text-white border-red-700",
-            isSelected && !isActive && !isInvalid && "bg-yellow-200 border-yellow-500",
-            hasLadder && !isActive && !isInvalid && !isSelected && "border-2 border-black"
+            "absolute flex items-center justify-center border text-lg font-mono cursor-pointer select-none overflow-hidden transition-colors duration-75",
+            // Base Colors
+            "bg-white dark:bg-[#1a1a1a] text-black dark:text-white border-gray-200 dark:border-white/10",
+            // Active Selection (The cell with the cursor)
+            isActive && "bg-black dark:bg-white text-white dark:text-black border-black dark:border-white z-20 scale-105",
+            // Draft Words (Letters you are currently typing)
+            isDraft && !isActive && "bg-gray-100 dark:bg-white/10 text-black dark:text-white border-black/20 dark:border-white/20 z-10",
+            // Invalid Words
+            isInvalid && "bg-red-500 text-white border-red-700 dark:border-red-400 z-10",
+            // Selected Word from List
+            isSelected && !isActive && !isInvalid && "bg-yellow-100 dark:bg-yellow-900/40 border-yellow-400 dark:border-yellow-600",
+            // Word with a Ladder (Sub-layer)
+            hasLadder && !isActive && !isInvalid && !isSelected && "border-2 border-black dark:border-white"
           )}
           style={{
             width: CELL_SIZE,
@@ -317,9 +374,9 @@ export const GridViewport: React.FC = () => {
           }}
         >
           {hasLadder && subLayer && !isActive && camera.scale > 0.7 && (
-            <div className="absolute inset-0 opacity-20 pointer-events-none grid grid-cols-4 grid-rows-4 gap-px bg-gray-200">
+            <div className="absolute inset-0 opacity-20 pointer-events-none grid grid-cols-4 grid-rows-4 gap-px bg-gray-200 dark:bg-white/10">
               {Object.values(subLayer.cellsByKey).slice(0, 16).map((subCell, i) => (
-                <div key={i} className="bg-black w-full h-full" style={{ opacity: subCell.char ? 1 : 0 }} />
+                <div key={i} className="bg-black dark:bg-white w-full h-full" style={{ opacity: subCell.char ? 1 : 0 }} />
               ))}
             </div>
           )}
@@ -361,13 +418,37 @@ export const GridViewport: React.FC = () => {
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden bg-white cursor-crosshair"
-      onMouseDown={() => {
+      className="relative w-full h-full overflow-hidden bg-white dark:bg-[#0a0a0a] cursor-crosshair touch-none"
+      onPointerDown={(e) => {
         if (document.activeElement instanceof HTMLElement) {
           document.activeElement.blur();
         }
+        touchStartRef.current = { x: e.clientX, y: e.clientY, time: Date.now() };
+      }}
+      onPointerUp={() => {
+        // We'll keep touchStartRef for a moment for click handler to use
+        setTimeout(() => { touchStartRef.current = null; }, 10);
       }}
     >
+      {/* Hidden input to trigger mobile keyboard and capture text entry */}
+      <input
+        ref={inputRef}
+        type="text"
+        className="fixed opacity-0 pointer-events-none -top-10 left-0"
+        onChange={handleInputChange}
+        onKeyDown={(e) => {
+          if (e.key === 'Backspace') {
+            backspace();
+          } else if (e.key === 'Enter') {
+            commitWord();
+          } else if (e.key === 'Escape') {
+            cancelDraft();
+          }
+        }}
+        autoComplete="off"
+        autoCapitalize="characters"
+        spellCheck="false"
+      />
       <TransformWrapper
         ref={transformComponentRef}
         initialScale={camera.scale}
@@ -387,12 +468,17 @@ export const GridViewport: React.FC = () => {
             positionY: ref.state.positionY
           });
         }}
-        // Panning only with middle mouse or alt+left click as before
+        // Enable touch panning (1-finger) and wheel zoom
         panning={{
           disabled: false,
           velocityDisabled: true,
+          excluded: ["input", "textarea", "button", "select"],
+          // Require middle button or Alt key on desktop for panning
+          // But allow touch panning freely
         }}
+        pinch={{ disabled: false }}
         wheel={{ step: 0.1 }}
+        doubleClick={{ disabled: true }} // Handle it ourselves for mobile compatibility
       >
         <TransformComponent
           wrapperStyle={{ width: '100%', height: '100%' }}
@@ -406,10 +492,10 @@ export const GridViewport: React.FC = () => {
               height: '100000px',
               left: '-50000px',
               top: '-50000px',
-              backgroundColor: 'white',
+              backgroundColor: theme === 'dark' ? '#0a0a0a' : 'white',
               backgroundImage: `
-                linear-gradient(to right, #e5e7eb 1px, transparent 1px),
-                linear-gradient(to bottom, #e5e7eb 1px, transparent 1px)
+                linear-gradient(to right, ${theme === 'dark' ? 'rgba(255,255,255,0.05)' : '#e5e7eb'} 1px, transparent 1px),
+                linear-gradient(to bottom, ${theme === 'dark' ? 'rgba(255,255,255,0.05)' : '#e5e7eb'} 1px, transparent 1px)
               `,
               backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
               backgroundPosition: '0 0',
@@ -434,12 +520,12 @@ export const GridViewport: React.FC = () => {
                 }}
               >
                 {/* Connector Line */}
-                <div className="absolute left-4 -bottom-4 w-px h-8 border-l-2 border-dashed border-black opacity-20" />
+                <div className="absolute left-4 -bottom-4 w-px h-8 border-l-2 border-dashed border-black dark:border-white opacity-20" />
                 
                 {/* The "Post-it" or "Tape" */}
                 <div
                   className={cn(
-                    "relative bg-yellow-50 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[-1deg]",
+                    "relative bg-yellow-50 dark:bg-yellow-900/20 border-2 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] rotate-[-1deg]",
                     "min-w-[240px] max-w-[560px] max-h-[360px] overflow-auto resize pointer-events-auto"
                   )}
                   onMouseDown={(e) => {
@@ -451,9 +537,9 @@ export const GridViewport: React.FC = () => {
                   <div
                     className={cn(
                       "sticky top-0 z-10 flex items-center justify-between gap-2 px-3 py-2",
-                      "bg-yellow-100 border-b border-black/30 cursor-move select-none"
+                      "bg-yellow-100 dark:bg-yellow-900/40 border-b border-black/30 dark:border-white/30 cursor-move select-none touch-none"
                     )}
-                    onMouseDown={(e) => {
+                    onPointerDown={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
 
@@ -469,18 +555,18 @@ export const GridViewport: React.FC = () => {
                     }}
                   >
                     <div className="flex items-center gap-2 opacity-60">
-                      <div className="w-2 h-2 bg-black rounded-full" />
-                      <span className="text-[9px] font-black uppercase tracking-widest">
+                      <div className="w-2 h-2 bg-black dark:bg-white rounded-full" />
+                      <span className="text-[9px] font-black uppercase tracking-widest text-black dark:text-white">
                         Memo // Layer {activeLayerId.slice(-4)}
                       </span>
                     </div>
-                    <div className="text-[9px] font-mono opacity-60">
+                    <div className="text-[9px] font-mono opacity-60 text-black dark:text-white">
                       x {Math.round(effectiveCommentPos.x * 100) / 100}, y {Math.round(effectiveCommentPos.y * 100) / 100}
                     </div>
                   </div>
 
                   <div className="p-3">
-                    <div className="text-[11px] font-mono leading-relaxed text-black whitespace-pre-wrap break-words">
+                    <div className="text-[11px] font-mono leading-relaxed text-black dark:text-white whitespace-pre-wrap break-words">
                       {activeLayer.comment}
                     </div>
                   </div>
@@ -493,7 +579,7 @@ export const GridViewport: React.FC = () => {
             {/* Visual Indicator for Active Direction */}
             {activeCell && (
               <div 
-                className="absolute border-2 border-black pointer-events-none opacity-30 transition-all duration-100"
+                className="absolute border-2 border-black dark:border-white pointer-events-none opacity-30 transition-all duration-100"
                 style={{
                   width: activeDirection === 'across' ? CELL_SIZE * 3 : CELL_SIZE,
                   height: activeDirection === 'across' ? CELL_SIZE : CELL_SIZE * 3,

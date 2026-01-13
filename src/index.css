@@ -8,18 +8,29 @@
   color: #000;
 }
 
+:root.dark {
+  background-color: #0a0a0a;
+  color: #fff;
+}
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+  background-color: inherit;
+  color: inherit;
 }
 
 #root {
   width: 100%;
   height: 100vh;
+  height: 100dvh;
 }
 
 /* Brutalist Scrollbar */
@@ -30,9 +41,16 @@ body {
 ::-webkit-scrollbar-track {
   background: #fff;
 }
+.dark ::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
 ::-webkit-scrollbar-thumb {
   background: #000;
   border: 1px solid #fff;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #fff;
+  border: 1px solid #0a0a0a;
 }
 
 /* Custom classes for the grid */
@@ -41,11 +59,18 @@ body {
   position: relative;
 }
 
+.dark .grid-bg {
+  background-color: #0a0a0a;
+}
+
 .thin-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
 .thin-scrollbar::-webkit-scrollbar-thumb {
   background: #000;
+}
+.dark .thin-scrollbar::-webkit-scrollbar-thumb {
+  background: #fff;
 }
 
 .grid-bg::after {
@@ -55,6 +80,10 @@ body {
   background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.02) 0%, transparent 100%);
   animation: pulse-bg 10s ease-in-out infinite;
   pointer-events: none;
+}
+
+.dark .grid-bg::after {
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 100%);
 }
 
 @keyframes pulse-bg {
