@@ -1,163 +1,2877 @@
 {
-    "version": 1,
-    "rootLayerId": "root",
-    "layersById": {
-      "root": {
-        "id": "root",
-        "cellsByKey": {
-          "0,0": { "coord": { "x": 0, "y": 0 }, "char": "I", "wordIds": ["ign1"] },
-          "1,0": { "coord": { "x": 1, "y": 0 }, "char": "G", "wordIds": ["ign1"] },
-          "2,0": { "coord": { "x": 2, "y": 0 }, "char": "N", "wordIds": ["ign1"] },
-          "3,0": { "coord": { "x": 3, "y": 0 }, "char": "I", "wordIds": ["ign1", "sw1"] },
-          "4,0": { "coord": { "x": 4, "y": 0 }, "char": "T", "wordIds": ["ign1"] },
-          "5,0": { "coord": { "x": 5, "y": 0 }, "char": "I", "wordIds": ["ign1"] },
-          "6,0": { "coord": { "x": 6, "y": 0 }, "char": "O", "wordIds": ["ign1"] },
-          "7,0": { "coord": { "x": 7, "y": 0 }, "char": "N", "wordIds": ["ign1"] },
-          "3,-2": { "coord": { "x": 3, "y": -2 }, "char": "S", "wordIds": ["sw1"] },
-          "3,-1": { "coord": { "x": 3, "y": -1 }, "char": "W", "wordIds": ["sw1"] },
-          "3,1": { "coord": { "x": 3, "y": 1 }, "char": "T", "wordIds": ["sw1", "bat1"] },
-          "3,2": { "coord": { "x": 3, "y": 2 }, "char": "C", "wordIds": ["sw1"] },
-          "3,3": { "coord": { "x": 3, "y": 3 }, "char": "H", "wordIds": ["sw1"] },
-          "1,1": { "coord": { "x": 1, "y": 1 }, "char": "B", "wordIds": ["bat1"] },
-          "2,1": { "coord": { "x": 2, "y": 1 }, "char": "A", "wordIds": ["bat1"] },
-          "4,1": { "coord": { "x": 4, "y": 1 }, "char": "T", "wordIds": ["bat1"] },
-          "5,1": { "coord": { "x": 5, "y": 1 }, "char": "E", "wordIds": ["bat1"] },
-          "6,1": { "coord": { "x": 6, "y": 1 }, "char": "R", "wordIds": ["bat1", "cur1"] },
-          "7,1": { "coord": { "x": 7, "y": 1 }, "char": "Y", "wordIds": ["bat1"] },
-          "6,-1": { "coord": { "x": 6, "y": -1 }, "char": "C", "wordIds": ["cur1"] },
-          "6,0": { "coord": { "x": 6, "y": 0 }, "char": "U", "wordIds": ["cur1"] },
-          "6,2": { "coord": { "x": 6, "y": 2 }, "char": "R", "wordIds": ["cur1"] },
-          "6,3": { "coord": { "x": 6, "y": 3 }, "char": "E", "wordIds": ["cur1", "eng1"] },
-          "6,4": { "coord": { "x": 6, "y": 4 }, "char": "N", "wordIds": ["cur1"] },
-          "6,5": { "coord": { "x": 6, "y": 5 }, "char": "T", "wordIds": ["cur1"] },
-          "7,3": { "coord": { "x": 7, "y": 3 }, "char": "N", "wordIds": ["eng1"] },
-          "8,3": { "coord": { "x": 8, "y": 3 }, "char": "G", "wordIds": ["eng1", "gear1"] },
-          "9,3": { "coord": { "x": 9, "y": 3 }, "char": "I", "wordIds": ["eng1"] },
-          "10,3": { "coord": { "x": 10, "y": 3 }, "char": "N", "wordIds": ["eng1"] },
-          "11,3": { "coord": { "x": 11, "y": 3 }, "char": "E", "wordIds": ["eng1"] },
-          "8,4": { "coord": { "x": 8, "y": 4 }, "char": "E", "wordIds": ["gear1"] },
-          "8,5": { "coord": { "x": 8, "y": 5 }, "char": "A", "wordIds": ["gear1"] },
-          "8,6": { "coord": { "x": 8, "y": 6 }, "char": "R", "wordIds": ["gear1"] },
-          "8,7": { "coord": { "x": 8, "y": 7 }, "char": "S", "wordIds": ["gear1", "shf1"] },
-          "9,7": { "coord": { "x": 9, "y": 7 }, "char": "H", "wordIds": ["shf1"] },
-          "10,7": { "coord": { "x": 10, "y": 7 }, "char": "A", "wordIds": ["shf1"] },
-          "11,7": { "coord": { "x": 11, "y": 7 }, "char": "F", "wordIds": ["shf1"] },
-          "12,7": { "coord": { "x": 12, "y": 7 }, "char": "T", "wordIds": ["shf1", "tir1"] },
-          "12,8": { "coord": { "x": 12, "y": 8 }, "char": "I", "wordIds": ["tir1"] },
-          "12,9": { "coord": { "x": 12, "y": 9 }, "char": "R", "wordIds": ["tir1"] },
-          "12,10": { "coord": { "x": 12, "y": 10 }, "char": "E", "wordIds": ["tir1"] },
-          "12,11": { "coord": { "x": 12, "y": 11 }, "char": "S", "wordIds": ["tir1"] }
+  "version": 1,
+  "rootLayerId": "root",
+  "layersById": {
+    "root": {
+      "id": "root",
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "I",
+          "wordIds": [
+            "ign1"
+          ]
         },
-        "words": [
-          { "id": "ign1", "layerId": "root", "start": { "x": 0, "y": 0 }, "direction": "across", "text": "IGNITION" },
-          { "id": "sw1", "layerId": "root", "start": { "x": 3, "y": -2 }, "direction": "down", "text": "SWITCH" },
-          { "id": "bat1", "layerId": "root", "start": { "x": 1, "y": 1 }, "direction": "across", "text": "BATTERY" },
-          { "id": "cur1", "layerId": "root", "start": { "x": 6, "y": -1 }, "direction": "down", "text": "CURRENT" },
-          { "id": "eng1", "layerId": "root", "start": { "x": 6, "y": 3 }, "direction": "across", "text": "ENGINE", "ladderLayerId": "layer-engine" },
-          { "id": "gear1", "layerId": "root", "start": { "x": 8, "y": 3 }, "direction": "down", "text": "GEARS" },
-          { "id": "shf1", "layerId": "root", "start": { "x": 8, "y": 7 }, "direction": "across", "text": "SHAFT" },
-          { "id": "tir1", "layerId": "root", "start": { "x": 12, "y": 7 }, "direction": "down", "text": "TIRES" }
-        ],
-        "comment": "The sequence of car operation: The IGNITION key closes the SWITCH, allowing the BATTERY to send CURRENT to the ENGINE. This power spins the GEARS, which rotate the SHAFT, finally moving the TIRES.",
-        "commentPos": { "x": 13, "y": 2 }
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "G",
+          "wordIds": [
+            "ign1"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "N",
+          "wordIds": [
+            "ign1"
+          ]
+        },
+        "3,0": {
+          "coord": {
+            "x": 3,
+            "y": 0
+          },
+          "char": "I",
+          "wordIds": [
+            "ign1",
+            "sw1"
+          ]
+        },
+        "4,0": {
+          "coord": {
+            "x": 4,
+            "y": 0
+          },
+          "char": "T",
+          "wordIds": [
+            "ign1"
+          ]
+        },
+        "5,0": {
+          "coord": {
+            "x": 5,
+            "y": 0
+          },
+          "char": "I",
+          "wordIds": [
+            "ign1"
+          ]
+        },
+        "6,0": {
+          "coord": {
+            "x": 6,
+            "y": 0
+          },
+          "char": "U",
+          "wordIds": [
+            "cur1"
+          ]
+        },
+        "7,0": {
+          "coord": {
+            "x": 7,
+            "y": 0
+          },
+          "char": "N",
+          "wordIds": [
+            "ign1"
+          ]
+        },
+        "3,-2": {
+          "coord": {
+            "x": 3,
+            "y": -2
+          },
+          "char": "S",
+          "wordIds": [
+            "sw1"
+          ]
+        },
+        "3,-1": {
+          "coord": {
+            "x": 3,
+            "y": -1
+          },
+          "char": "W",
+          "wordIds": [
+            "sw1"
+          ]
+        },
+        "3,1": {
+          "coord": {
+            "x": 3,
+            "y": 1
+          },
+          "char": "T",
+          "wordIds": [
+            "sw1",
+            "bat1"
+          ]
+        },
+        "3,2": {
+          "coord": {
+            "x": 3,
+            "y": 2
+          },
+          "char": "C",
+          "wordIds": [
+            "sw1"
+          ]
+        },
+        "3,3": {
+          "coord": {
+            "x": 3,
+            "y": 3
+          },
+          "char": "H",
+          "wordIds": [
+            "sw1"
+          ]
+        },
+        "1,1": {
+          "coord": {
+            "x": 1,
+            "y": 1
+          },
+          "char": "B",
+          "wordIds": [
+            "bat1"
+          ]
+        },
+        "2,1": {
+          "coord": {
+            "x": 2,
+            "y": 1
+          },
+          "char": "A",
+          "wordIds": [
+            "bat1"
+          ]
+        },
+        "4,1": {
+          "coord": {
+            "x": 4,
+            "y": 1
+          },
+          "char": "T",
+          "wordIds": [
+            "bat1"
+          ]
+        },
+        "5,1": {
+          "coord": {
+            "x": 5,
+            "y": 1
+          },
+          "char": "E",
+          "wordIds": [
+            "bat1"
+          ]
+        },
+        "6,1": {
+          "coord": {
+            "x": 6,
+            "y": 1
+          },
+          "char": "R",
+          "wordIds": [
+            "bat1",
+            "cur1"
+          ]
+        },
+        "7,1": {
+          "coord": {
+            "x": 7,
+            "y": 1
+          },
+          "char": "Y",
+          "wordIds": [
+            "bat1"
+          ]
+        },
+        "6,-1": {
+          "coord": {
+            "x": 6,
+            "y": -1
+          },
+          "char": "C",
+          "wordIds": [
+            "cur1"
+          ]
+        },
+        "6,2": {
+          "coord": {
+            "x": 6,
+            "y": 2
+          },
+          "char": "R",
+          "wordIds": [
+            "cur1"
+          ]
+        },
+        "6,3": {
+          "coord": {
+            "x": 6,
+            "y": 3
+          },
+          "char": "E",
+          "wordIds": [
+            "cur1",
+            "eng1"
+          ]
+        },
+        "6,4": {
+          "coord": {
+            "x": 6,
+            "y": 4
+          },
+          "char": "N",
+          "wordIds": [
+            "cur1"
+          ]
+        },
+        "6,5": {
+          "coord": {
+            "x": 6,
+            "y": 5
+          },
+          "char": "T",
+          "wordIds": [
+            "cur1"
+          ]
+        },
+        "7,3": {
+          "coord": {
+            "x": 7,
+            "y": 3
+          },
+          "char": "N",
+          "wordIds": [
+            "eng1"
+          ]
+        },
+        "8,3": {
+          "coord": {
+            "x": 8,
+            "y": 3
+          },
+          "char": "G",
+          "wordIds": [
+            "eng1",
+            "gear1"
+          ]
+        },
+        "9,3": {
+          "coord": {
+            "x": 9,
+            "y": 3
+          },
+          "char": "I",
+          "wordIds": [
+            "eng1"
+          ]
+        },
+        "10,3": {
+          "coord": {
+            "x": 10,
+            "y": 3
+          },
+          "char": "N",
+          "wordIds": [
+            "eng1"
+          ]
+        },
+        "11,3": {
+          "coord": {
+            "x": 11,
+            "y": 3
+          },
+          "char": "E",
+          "wordIds": [
+            "eng1"
+          ]
+        },
+        "8,4": {
+          "coord": {
+            "x": 8,
+            "y": 4
+          },
+          "char": "E",
+          "wordIds": [
+            "gear1"
+          ]
+        },
+        "8,5": {
+          "coord": {
+            "x": 8,
+            "y": 5
+          },
+          "char": "A",
+          "wordIds": [
+            "gear1"
+          ]
+        },
+        "8,6": {
+          "coord": {
+            "x": 8,
+            "y": 6
+          },
+          "char": "R",
+          "wordIds": [
+            "gear1"
+          ]
+        },
+        "8,7": {
+          "coord": {
+            "x": 8,
+            "y": 7
+          },
+          "char": "S",
+          "wordIds": [
+            "gear1",
+            "shf1"
+          ]
+        },
+        "9,7": {
+          "coord": {
+            "x": 9,
+            "y": 7
+          },
+          "char": "H",
+          "wordIds": [
+            "shf1"
+          ]
+        },
+        "10,7": {
+          "coord": {
+            "x": 10,
+            "y": 7
+          },
+          "char": "A",
+          "wordIds": [
+            "shf1"
+          ]
+        },
+        "11,7": {
+          "coord": {
+            "x": 11,
+            "y": 7
+          },
+          "char": "F",
+          "wordIds": [
+            "shf1"
+          ]
+        },
+        "12,7": {
+          "coord": {
+            "x": 12,
+            "y": 7
+          },
+          "char": "T",
+          "wordIds": [
+            "shf1",
+            "tir1"
+          ]
+        },
+        "12,8": {
+          "coord": {
+            "x": 12,
+            "y": 8
+          },
+          "char": "I",
+          "wordIds": [
+            "tir1"
+          ]
+        },
+        "12,9": {
+          "coord": {
+            "x": 12,
+            "y": 9
+          },
+          "char": "R",
+          "wordIds": [
+            "tir1"
+          ]
+        },
+        "12,10": {
+          "coord": {
+            "x": 12,
+            "y": 10
+          },
+          "char": "E",
+          "wordIds": [
+            "tir1"
+          ]
+        },
+        "12,11": {
+          "coord": {
+            "x": 12,
+            "y": 11
+          },
+          "char": "S",
+          "wordIds": [
+            "tir1"
+          ]
+        }
       },
-      "layer-engine": {
-        "id": "layer-engine",
-        "name": "ENGINE",
-        "cellsByKey": {
-          "0,0": { "coord": { "x": 0, "y": 0 }, "char": "I", "wordIds": ["int1"] },
-          "1,0": { "coord": { "x": 1, "y": 0 }, "char": "N", "wordIds": ["int1"] },
-          "2,0": { "coord": { "x": 2, "y": 0 }, "char": "T", "wordIds": ["int1"] },
-          "3,0": { "coord": { "x": 3, "y": 0 }, "char": "A", "wordIds": ["int1", "val1"] },
-          "4,0": { "coord": { "x": 4, "y": 0 }, "char": "K", "wordIds": ["int1"] },
-          "5,0": { "coord": { "x": 5, "y": 0 }, "char": "E", "wordIds": ["int1"] },
-          "3,-1": { "coord": { "x": 3, "y": -1 }, "char": "V", "wordIds": ["val1"] },
-          "3,1": { "coord": { "x": 3, "y": 1 }, "char": "L", "wordIds": ["val1", "cyl1"] },
-          "3,2": { "coord": { "x": 3, "y": 2 }, "char": "V", "wordIds": ["val1"] },
-          "3,3": { "coord": { "x": 3, "y": 3 }, "char": "E", "wordIds": ["val1"] },
-          "1,1": { "coord": { "x": 1, "y": 1 }, "char": "C", "wordIds": ["cyl1"] },
-          "2,1": { "coord": { "x": 2, "y": 1 }, "char": "Y", "wordIds": ["cyl1"] },
-          "4,1": { "coord": { "x": 4, "y": 1 }, "char": "I", "wordIds": ["cyl1"] },
-          "5,1": { "coord": { "x": 5, "y": 1 }, "char": "N", "wordIds": ["cyl1"] },
-          "6,1": { "coord": { "x": 6, "y": 1 }, "char": "D", "wordIds": ["cyl1"] },
-          "7,1": { "coord": { "x": 7, "y": 1 }, "char": "E", "wordIds": ["cyl1"] },
-          "8,1": { "coord": { "x": 8, "y": 1 }, "char": "R", "wordIds": ["cyl1", "rng1"] },
-          "8,2": { "coord": { "x": 8, "y": 2 }, "char": "I", "wordIds": ["rng1"] },
-          "8,3": { "coord": { "x": 8, "y": 3 }, "char": "N", "wordIds": ["rng1"] },
-          "8,4": { "coord": { "x": 8, "y": 4 }, "char": "G", "wordIds": ["rng1"] },
-          "8,5": { "coord": { "x": 8, "y": 5 }, "char": "S", "wordIds": ["rng1", "str1"] },
-          "9,5": { "coord": { "x": 9, "y": 5 }, "char": "T", "wordIds": ["str1"] },
-          "10,5": { "coord": { "x": 10, "y": 5 }, "char": "R", "wordIds": ["str1"] },
-          "11,5": { "coord": { "x": 11, "y": 5 }, "char": "O", "wordIds": ["str1"] },
-          "12,5": { "coord": { "x": 12, "y": 5 }, "char": "K", "wordIds": ["str1"] },
-          "13,5": { "coord": { "x": 13, "y": 5 }, "char": "E", "wordIds": ["str1", "exh1"] },
-          "13,6": { "coord": { "x": 13, "y": 6 }, "char": "X", "wordIds": ["exh1"] },
-          "13,7": { "coord": { "x": 13, "y": 7 }, "char": "H", "wordIds": ["exh1"] },
-          "13,8": { "coord": { "x": 13, "y": 8 }, "char": "A", "wordIds": ["exh1"] },
-          "13,9": { "coord": { "x": 13, "y": 9 }, "char": "U", "wordIds": ["exh1"] },
-          "13,10": { "coord": { "x": 13, "y": 10 }, "char": "S", "wordIds": ["exh1"] },
-          "13,11": { "coord": { "x": 13, "y": 11 }, "char": "T", "wordIds": ["exh1"] }
+      "words": [
+        {
+          "id": "ign1",
+          "layerId": "root",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "IGNITION",
+          "ladderLayerId": "layer-ignition"
         },
-        "words": [
-          { "id": "int1", "layerId": "layer-engine", "start": { "x": 0, "y": 0 }, "direction": "across", "text": "INTAKE" },
-          { "id": "val1", "layerId": "layer-engine", "start": { "x": 3, "y": -1 }, "direction": "down", "text": "VALVE" },
-          { "id": "cyl1", "layerId": "layer-engine", "start": { "x": 1, "y": 1 }, "direction": "across", "text": "CYLINDER" },
-          { "id": "rng1", "layerId": "layer-engine", "start": { "x": 8, "y": 1 }, "direction": "down", "text": "RINGS" },
-          { "id": "str1", "layerId": "layer-engine", "start": { "x": 8, "y": 5 }, "direction": "across", "text": "STROKE", "ladderLayerId": "layer-physics" },
-          { "id": "exh1", "layerId": "layer-engine", "start": { "x": 13, "y": 5 }, "direction": "down", "text": "EXHAUST" }
-        ],
-        "comment": "The 4-stroke cycle: Air enters the INTAKE, passes the VALVE into the CYLINDER. The RINGS seal the piston, allowing the STROKE (combustion) to generate power before gases leave via EXHAUST.",
-        "commentPos": { "x": 15, "y": 2 }
+        {
+          "id": "sw1",
+          "layerId": "root",
+          "start": {
+            "x": 3,
+            "y": -2
+          },
+          "direction": "down",
+          "text": "SWITCH"
+        },
+        {
+          "id": "bat1",
+          "layerId": "root",
+          "start": {
+            "x": 1,
+            "y": 1
+          },
+          "direction": "across",
+          "text": "BATTERY",
+          "ladderLayerId": "layer-electrical"
+        },
+        {
+          "id": "cur1",
+          "layerId": "root",
+          "start": {
+            "x": 6,
+            "y": -1
+          },
+          "direction": "down",
+          "text": "CURRENT"
+        },
+        {
+          "id": "eng1",
+          "layerId": "root",
+          "start": {
+            "x": 6,
+            "y": 3
+          },
+          "direction": "across",
+          "text": "ENGINE",
+          "ladderLayerId": "layer-engine"
+        },
+        {
+          "id": "gear1",
+          "layerId": "root",
+          "start": {
+            "x": 8,
+            "y": 3
+          },
+          "direction": "down",
+          "text": "GEARS",
+          "ladderLayerId": "layer-transmission"
+        },
+        {
+          "id": "shf1",
+          "layerId": "root",
+          "start": {
+            "x": 8,
+            "y": 7
+          },
+          "direction": "across",
+          "text": "SHAFT"
+        },
+        {
+          "id": "tir1",
+          "layerId": "root",
+          "start": {
+            "x": 12,
+            "y": 7
+          },
+          "direction": "down",
+          "text": "TIRES",
+          "ladderLayerId": "layer-traction"
+        }
+      ],
+      "comment": "The sequence of car operation: The IGNITION key closes the SWITCH, allowing the BATTERY to send CURRENT to the ENGINE. This power spins the GEARS, which rotate the SHAFT, finally moving the TIRES.",
+      "commentPos": {
+        "x": 13,
+        "y": 2
+      }
+    },
+    "layer-engine": {
+      "id": "layer-engine",
+      "name": "ENGINE",
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "I",
+          "wordIds": [
+            "int1"
+          ]
+        },
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "N",
+          "wordIds": [
+            "int1"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "T",
+          "wordIds": [
+            "int1"
+          ]
+        },
+        "3,0": {
+          "coord": {
+            "x": 3,
+            "y": 0
+          },
+          "char": "A",
+          "wordIds": [
+            "int1",
+            "val1"
+          ]
+        },
+        "4,0": {
+          "coord": {
+            "x": 4,
+            "y": 0
+          },
+          "char": "K",
+          "wordIds": [
+            "int1"
+          ]
+        },
+        "5,0": {
+          "coord": {
+            "x": 5,
+            "y": 0
+          },
+          "char": "E",
+          "wordIds": [
+            "int1"
+          ]
+        },
+        "3,-1": {
+          "coord": {
+            "x": 3,
+            "y": -1
+          },
+          "char": "V",
+          "wordIds": [
+            "val1"
+          ]
+        },
+        "3,1": {
+          "coord": {
+            "x": 3,
+            "y": 1
+          },
+          "char": "L",
+          "wordIds": [
+            "val1",
+            "cyl1"
+          ]
+        },
+        "3,2": {
+          "coord": {
+            "x": 3,
+            "y": 2
+          },
+          "char": "V",
+          "wordIds": [
+            "val1"
+          ]
+        },
+        "3,3": {
+          "coord": {
+            "x": 3,
+            "y": 3
+          },
+          "char": "E",
+          "wordIds": [
+            "val1"
+          ]
+        },
+        "1,1": {
+          "coord": {
+            "x": 1,
+            "y": 1
+          },
+          "char": "C",
+          "wordIds": [
+            "cyl1"
+          ]
+        },
+        "2,1": {
+          "coord": {
+            "x": 2,
+            "y": 1
+          },
+          "char": "Y",
+          "wordIds": [
+            "cyl1"
+          ]
+        },
+        "4,1": {
+          "coord": {
+            "x": 4,
+            "y": 1
+          },
+          "char": "I",
+          "wordIds": [
+            "cyl1"
+          ]
+        },
+        "5,1": {
+          "coord": {
+            "x": 5,
+            "y": 1
+          },
+          "char": "N",
+          "wordIds": [
+            "cyl1"
+          ]
+        },
+        "6,1": {
+          "coord": {
+            "x": 6,
+            "y": 1
+          },
+          "char": "D",
+          "wordIds": [
+            "cyl1"
+          ]
+        },
+        "7,1": {
+          "coord": {
+            "x": 7,
+            "y": 1
+          },
+          "char": "E",
+          "wordIds": [
+            "cyl1"
+          ]
+        },
+        "8,1": {
+          "coord": {
+            "x": 8,
+            "y": 1
+          },
+          "char": "R",
+          "wordIds": [
+            "cyl1",
+            "rng1"
+          ]
+        },
+        "8,2": {
+          "coord": {
+            "x": 8,
+            "y": 2
+          },
+          "char": "I",
+          "wordIds": [
+            "rng1"
+          ]
+        },
+        "8,3": {
+          "coord": {
+            "x": 8,
+            "y": 3
+          },
+          "char": "N",
+          "wordIds": [
+            "rng1"
+          ]
+        },
+        "8,4": {
+          "coord": {
+            "x": 8,
+            "y": 4
+          },
+          "char": "G",
+          "wordIds": [
+            "rng1"
+          ]
+        },
+        "8,5": {
+          "coord": {
+            "x": 8,
+            "y": 5
+          },
+          "char": "S",
+          "wordIds": [
+            "rng1",
+            "str1"
+          ]
+        },
+        "9,5": {
+          "coord": {
+            "x": 9,
+            "y": 5
+          },
+          "char": "T",
+          "wordIds": [
+            "str1"
+          ]
+        },
+        "10,5": {
+          "coord": {
+            "x": 10,
+            "y": 5
+          },
+          "char": "R",
+          "wordIds": [
+            "str1"
+          ]
+        },
+        "11,5": {
+          "coord": {
+            "x": 11,
+            "y": 5
+          },
+          "char": "O",
+          "wordIds": [
+            "str1"
+          ]
+        },
+        "12,5": {
+          "coord": {
+            "x": 12,
+            "y": 5
+          },
+          "char": "K",
+          "wordIds": [
+            "str1"
+          ]
+        },
+        "13,5": {
+          "coord": {
+            "x": 13,
+            "y": 5
+          },
+          "char": "E",
+          "wordIds": [
+            "str1",
+            "exh1"
+          ]
+        },
+        "13,6": {
+          "coord": {
+            "x": 13,
+            "y": 6
+          },
+          "char": "X",
+          "wordIds": [
+            "exh1"
+          ]
+        },
+        "13,7": {
+          "coord": {
+            "x": 13,
+            "y": 7
+          },
+          "char": "H",
+          "wordIds": [
+            "exh1"
+          ]
+        },
+        "13,8": {
+          "coord": {
+            "x": 13,
+            "y": 8
+          },
+          "char": "A",
+          "wordIds": [
+            "exh1"
+          ]
+        },
+        "13,9": {
+          "coord": {
+            "x": 13,
+            "y": 9
+          },
+          "char": "U",
+          "wordIds": [
+            "exh1"
+          ]
+        },
+        "13,10": {
+          "coord": {
+            "x": 13,
+            "y": 10
+          },
+          "char": "S",
+          "wordIds": [
+            "exh1"
+          ]
+        },
+        "13,11": {
+          "coord": {
+            "x": 13,
+            "y": 11
+          },
+          "char": "T",
+          "wordIds": [
+            "exh1"
+          ]
+        }
       },
-      "layer-physics": {
-        "id": "layer-physics",
-        "name": "PHYSICS",
-        "cellsByKey": {
-          "0,0": { "coord": { "x": 0, "y": 0 }, "char": "V", "wordIds": ["vol1"] },
-          "1,0": { "coord": { "x": 1, "y": 0 }, "char": "O", "wordIds": ["vol1"] },
-          "2,0": { "coord": { "x": 2, "y": 0 }, "char": "L", "wordIds": ["vol1"] },
-          "3,0": { "coord": { "x": 3, "y": 0 }, "char": "T", "wordIds": ["vol1"] },
-          "4,0": { "coord": { "x": 4, "y": 0 }, "char": "A", "wordIds": ["vol1"] },
-          "5,0": { "coord": { "x": 5, "y": 0 }, "char": "G", "wordIds": ["vol1", "gap1"] },
-          "6,0": { "coord": { "x": 6, "y": 0 }, "char": "E", "wordIds": ["vol1"] },
-          "5,1": { "coord": { "x": 5, "y": 1 }, "char": "A", "wordIds": ["gap1"] },
-          "5,2": { "coord": { "x": 5, "y": 2 }, "char": "P", "wordIds": ["gap1", "pla1"] },
-          "6,2": { "coord": { "x": 6, "y": 2 }, "char": "L", "wordIds": ["pla1"] },
-          "7,2": { "coord": { "x": 7, "y": 2 }, "char": "A", "wordIds": ["pla1", "arc1"] },
-          "8,2": { "coord": { "x": 8, "y": 2 }, "char": "S", "wordIds": ["pla1"] },
-          "9,2": { "coord": { "x": 9, "y": 2 }, "char": "M", "wordIds": ["pla1"] },
-          "10,2": { "coord": { "x": 10, "y": 2 }, "char": "A", "wordIds": ["pla1"] },
-          "7,3": { "coord": { "x": 7, "y": 3 }, "char": "R", "wordIds": ["arc1"] },
-          "7,4": { "coord": { "x": 7, "y": 4 }, "char": "C", "wordIds": ["arc1", "com1"] },
-          "8,4": { "coord": { "x": 8, "y": 4 }, "char": "O", "wordIds": ["com1"] },
-          "9,4": { "coord": { "x": 9, "y": 4 }, "char": "M", "wordIds": ["com1"] },
-          "10,4": { "coord": { "x": 10, "y": 4 }, "char": "B", "wordIds": ["com1"] },
-          "11,4": { "coord": { "x": 11, "y": 4 }, "char": "U", "wordIds": ["com1"] },
-          "12,4": { "coord": { "x": 12, "y": 4 }, "char": "S", "wordIds": ["com1"] },
-          "13,4": { "coord": { "x": 13, "y": 4 }, "char": "T", "wordIds": ["com1", "the1"] },
-          "13,5": { "coord": { "x": 13, "y": 5 }, "char": "H", "wordIds": ["the1"] },
-          "13,6": { "coord": { "x": 13, "y": 6 }, "char": "E", "wordIds": ["the1"] },
-          "13,7": { "coord": { "x": 13, "y": 7 }, "char": "R", "wordIds": ["the1"] },
-          "13,8": { "coord": { "x": 13, "y": 8 }, "char": "M", "wordIds": ["the1"] },
-          "13,9": { "coord": { "x": 13, "y": 9 }, "char": "A", "wordIds": ["the1", "exp1"] },
-          "13,10": { "coord": { "x": 13, "y": 10 }, "char": "L", "wordIds": ["the1"] },
-          "10,9": { "coord": { "x": 10, "y": 9 }, "char": "E", "wordIds": ["exp1"] },
-          "11,9": { "coord": { "x": 11, "y": 9 }, "char": "X", "wordIds": ["exp1"] },
-          "12,9": { "coord": { "x": 12, "y": 9 }, "char": "P", "wordIds": ["exp1"] },
-          "14,9": { "coord": { "x": 14, "y": 9 }, "char": "N", "wordIds": ["exp1"] },
-          "15,9": { "coord": { "x": 15, "y": 9 }, "char": "D", "wordIds": ["exp1"] }
+      "words": [
+        {
+          "id": "int1",
+          "layerId": "layer-engine",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "INTAKE"
         },
-        "words": [
-          { "id": "vol1", "layerId": "layer-physics", "start": { "x": 0, "y": 0 }, "direction": "across", "text": "VOLTAGE" },
-          { "id": "gap1", "layerId": "layer-physics", "start": { "x": 5, "y": 0 }, "direction": "down", "text": "GAP" },
-          { "id": "pla1", "layerId": "layer-physics", "start": { "x": 5, "y": 2 }, "direction": "across", "text": "PLASMA" },
-          { "id": "arc1", "layerId": "layer-physics", "start": { "x": 7, "y": 2 }, "direction": "down", "text": "ARC" },
-          { "id": "com1", "layerId": "layer-physics", "start": { "x": 7, "y": 4 }, "direction": "across", "text": "COMBUST" },
-          { "id": "the1", "layerId": "layer-physics", "start": { "x": 13, "y": 4 }, "direction": "down", "text": "THERMAL" },
-          { "id": "exp1", "layerId": "layer-physics", "start": { "x": 10, "y": 9 }, "direction": "across", "text": "EXPAND" }
-        ],
-        "comment": "The spark plug physics: High VOLTAGE jumps the spark plug GAP, creating PLASMA and an electric ARC. This triggers fuel to COMBUST, releasing THERMAL energy which causes the gases to EXPAND.",
-        "commentPos": { "x": 16, "y": 2 }
+        {
+          "id": "val1",
+          "layerId": "layer-engine",
+          "start": {
+            "x": 3,
+            "y": -1
+          },
+          "direction": "down",
+          "text": "VALVE",
+          "ladderLayerId": "layer-valvetrain"
+        },
+        {
+          "id": "cyl1",
+          "layerId": "layer-engine",
+          "start": {
+            "x": 1,
+            "y": 1
+          },
+          "direction": "across",
+          "text": "CYLINDER"
+        },
+        {
+          "id": "rng1",
+          "layerId": "layer-engine",
+          "start": {
+            "x": 8,
+            "y": 1
+          },
+          "direction": "down",
+          "text": "RINGS"
+        },
+        {
+          "id": "str1",
+          "layerId": "layer-engine",
+          "start": {
+            "x": 8,
+            "y": 5
+          },
+          "direction": "across",
+          "text": "STROKE",
+          "ladderLayerId": "layer-physics"
+        },
+        {
+          "id": "exh1",
+          "layerId": "layer-engine",
+          "start": {
+            "x": 13,
+            "y": 5
+          },
+          "direction": "down",
+          "text": "EXHAUST",
+          "ladderLayerId": "layer-emissions"
+        }
+      ],
+      "comment": "The 4-stroke cycle: Air enters the INTAKE, passes the VALVE into the CYLINDER. The RINGS seal the piston, allowing the STROKE (combustion) to generate power before gases leave via EXHAUST.",
+      "commentPos": {
+        "x": 15,
+        "y": 2
+      }
+    },
+    "layer-physics": {
+      "id": "layer-physics",
+      "name": "PHYSICS",
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "V",
+          "wordIds": [
+            "vol1"
+          ]
+        },
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "O",
+          "wordIds": [
+            "vol1"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "L",
+          "wordIds": [
+            "vol1"
+          ]
+        },
+        "3,0": {
+          "coord": {
+            "x": 3,
+            "y": 0
+          },
+          "char": "T",
+          "wordIds": [
+            "vol1"
+          ]
+        },
+        "4,0": {
+          "coord": {
+            "x": 4,
+            "y": 0
+          },
+          "char": "A",
+          "wordIds": [
+            "vol1"
+          ]
+        },
+        "5,0": {
+          "coord": {
+            "x": 5,
+            "y": 0
+          },
+          "char": "G",
+          "wordIds": [
+            "vol1",
+            "gap1"
+          ]
+        },
+        "6,0": {
+          "coord": {
+            "x": 6,
+            "y": 0
+          },
+          "char": "E",
+          "wordIds": [
+            "vol1"
+          ]
+        },
+        "5,1": {
+          "coord": {
+            "x": 5,
+            "y": 1
+          },
+          "char": "A",
+          "wordIds": [
+            "gap1"
+          ]
+        },
+        "5,2": {
+          "coord": {
+            "x": 5,
+            "y": 2
+          },
+          "char": "P",
+          "wordIds": [
+            "gap1",
+            "pla1"
+          ]
+        },
+        "6,2": {
+          "coord": {
+            "x": 6,
+            "y": 2
+          },
+          "char": "L",
+          "wordIds": [
+            "pla1"
+          ]
+        },
+        "7,2": {
+          "coord": {
+            "x": 7,
+            "y": 2
+          },
+          "char": "A",
+          "wordIds": [
+            "pla1",
+            "arc1"
+          ]
+        },
+        "8,2": {
+          "coord": {
+            "x": 8,
+            "y": 2
+          },
+          "char": "S",
+          "wordIds": [
+            "pla1"
+          ]
+        },
+        "9,2": {
+          "coord": {
+            "x": 9,
+            "y": 2
+          },
+          "char": "M",
+          "wordIds": [
+            "pla1"
+          ]
+        },
+        "10,2": {
+          "coord": {
+            "x": 10,
+            "y": 2
+          },
+          "char": "A",
+          "wordIds": [
+            "pla1"
+          ]
+        },
+        "7,3": {
+          "coord": {
+            "x": 7,
+            "y": 3
+          },
+          "char": "R",
+          "wordIds": [
+            "arc1"
+          ]
+        },
+        "7,4": {
+          "coord": {
+            "x": 7,
+            "y": 4
+          },
+          "char": "C",
+          "wordIds": [
+            "arc1",
+            "com1"
+          ]
+        },
+        "8,4": {
+          "coord": {
+            "x": 8,
+            "y": 4
+          },
+          "char": "O",
+          "wordIds": [
+            "com1"
+          ]
+        },
+        "9,4": {
+          "coord": {
+            "x": 9,
+            "y": 4
+          },
+          "char": "M",
+          "wordIds": [
+            "com1"
+          ]
+        },
+        "10,4": {
+          "coord": {
+            "x": 10,
+            "y": 4
+          },
+          "char": "B",
+          "wordIds": [
+            "com1"
+          ]
+        },
+        "11,4": {
+          "coord": {
+            "x": 11,
+            "y": 4
+          },
+          "char": "U",
+          "wordIds": [
+            "com1"
+          ]
+        },
+        "12,4": {
+          "coord": {
+            "x": 12,
+            "y": 4
+          },
+          "char": "S",
+          "wordIds": [
+            "com1"
+          ]
+        },
+        "13,4": {
+          "coord": {
+            "x": 13,
+            "y": 4
+          },
+          "char": "T",
+          "wordIds": [
+            "com1",
+            "the1"
+          ]
+        },
+        "13,5": {
+          "coord": {
+            "x": 13,
+            "y": 5
+          },
+          "char": "H",
+          "wordIds": [
+            "the1"
+          ]
+        },
+        "13,6": {
+          "coord": {
+            "x": 13,
+            "y": 6
+          },
+          "char": "E",
+          "wordIds": [
+            "the1"
+          ]
+        },
+        "13,7": {
+          "coord": {
+            "x": 13,
+            "y": 7
+          },
+          "char": "R",
+          "wordIds": [
+            "the1"
+          ]
+        },
+        "13,8": {
+          "coord": {
+            "x": 13,
+            "y": 8
+          },
+          "char": "M",
+          "wordIds": [
+            "the1"
+          ]
+        },
+        "13,9": {
+          "coord": {
+            "x": 13,
+            "y": 9
+          },
+          "char": "A",
+          "wordIds": [
+            "the1",
+            "exp1"
+          ]
+        },
+        "13,10": {
+          "coord": {
+            "x": 13,
+            "y": 10
+          },
+          "char": "L",
+          "wordIds": [
+            "the1"
+          ]
+        },
+        "10,9": {
+          "coord": {
+            "x": 10,
+            "y": 9
+          },
+          "char": "E",
+          "wordIds": [
+            "exp1"
+          ]
+        },
+        "11,9": {
+          "coord": {
+            "x": 11,
+            "y": 9
+          },
+          "char": "X",
+          "wordIds": [
+            "exp1"
+          ]
+        },
+        "12,9": {
+          "coord": {
+            "x": 12,
+            "y": 9
+          },
+          "char": "P",
+          "wordIds": [
+            "exp1"
+          ]
+        },
+        "14,9": {
+          "coord": {
+            "x": 14,
+            "y": 9
+          },
+          "char": "N",
+          "wordIds": [
+            "exp1"
+          ]
+        },
+        "15,9": {
+          "coord": {
+            "x": 15,
+            "y": 9
+          },
+          "char": "D",
+          "wordIds": [
+            "exp1"
+          ]
+        }
+      },
+      "words": [
+        {
+          "id": "vol1",
+          "layerId": "layer-physics",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "VOLTAGE"
+        },
+        {
+          "id": "gap1",
+          "layerId": "layer-physics",
+          "start": {
+            "x": 5,
+            "y": 0
+          },
+          "direction": "down",
+          "text": "GAP"
+        },
+        {
+          "id": "pla1",
+          "layerId": "layer-physics",
+          "start": {
+            "x": 5,
+            "y": 2
+          },
+          "direction": "across",
+          "text": "PLASMA"
+        },
+        {
+          "id": "arc1",
+          "layerId": "layer-physics",
+          "start": {
+            "x": 7,
+            "y": 2
+          },
+          "direction": "down",
+          "text": "ARC"
+        },
+        {
+          "id": "com1",
+          "layerId": "layer-physics",
+          "start": {
+            "x": 7,
+            "y": 4
+          },
+          "direction": "across",
+          "text": "COMBUST",
+          "ladderLayerId": "layer-combustion-chem"
+        },
+        {
+          "id": "the1",
+          "layerId": "layer-physics",
+          "start": {
+            "x": 13,
+            "y": 4
+          },
+          "direction": "down",
+          "text": "THERMAL"
+        },
+        {
+          "id": "exp1",
+          "layerId": "layer-physics",
+          "start": {
+            "x": 10,
+            "y": 9
+          },
+          "direction": "across",
+          "text": "EXPAND",
+          "ladderLayerId": "layer-thermodynamics"
+        }
+      ],
+      "comment": "The spark plug physics: High VOLTAGE jumps the spark plug GAP, creating PLASMA and an electric ARC. This triggers fuel to COMBUST, releasing THERMAL energy which causes the gases to EXPAND.",
+      "commentPos": {
+        "x": 16,
+        "y": 2
+      }
+    },
+    "layer-transmission": {
+      "id": "layer-transmission",
+      "name": "TRANSMISSION",
+      "words": [
+        {
+          "id": "clut",
+          "layerId": "layer-transmission",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "CLUTCH"
+        },
+        {
+          "id": "torq",
+          "layerId": "layer-transmission",
+          "start": {
+            "x": 3,
+            "y": 0
+          },
+          "direction": "down",
+          "text": "TORQUE"
+        },
+        {
+          "id": "flui",
+          "layerId": "layer-transmission",
+          "start": {
+            "x": 1,
+            "y": 4
+          },
+          "direction": "across",
+          "text": "FLUID"
+        },
+        {
+          "id": "driv",
+          "layerId": "layer-transmission",
+          "start": {
+            "x": 5,
+            "y": 4
+          },
+          "direction": "down",
+          "text": "DRIVE"
+        }
+      ],
+      "comment": "Transferring power: The CLUTCH engages the engine to provide TORQUE. Transmission FLUID keeps the gears cool as they power the DRIVE shaft.",
+      "commentPos": {
+        "x": 8,
+        "y": 2
+      },
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "C",
+          "wordIds": [
+            "clut"
+          ]
+        },
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "L",
+          "wordIds": [
+            "clut"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "U",
+          "wordIds": [
+            "clut"
+          ]
+        },
+        "3,0": {
+          "coord": {
+            "x": 3,
+            "y": 0
+          },
+          "char": "T",
+          "wordIds": [
+            "clut",
+            "torq"
+          ]
+        },
+        "4,0": {
+          "coord": {
+            "x": 4,
+            "y": 0
+          },
+          "char": "C",
+          "wordIds": [
+            "clut"
+          ]
+        },
+        "5,0": {
+          "coord": {
+            "x": 5,
+            "y": 0
+          },
+          "char": "H",
+          "wordIds": [
+            "clut"
+          ]
+        },
+        "3,1": {
+          "coord": {
+            "x": 3,
+            "y": 1
+          },
+          "char": "O",
+          "wordIds": [
+            "torq"
+          ]
+        },
+        "3,2": {
+          "coord": {
+            "x": 3,
+            "y": 2
+          },
+          "char": "R",
+          "wordIds": [
+            "torq"
+          ]
+        },
+        "3,3": {
+          "coord": {
+            "x": 3,
+            "y": 3
+          },
+          "char": "Q",
+          "wordIds": [
+            "torq"
+          ]
+        },
+        "3,4": {
+          "coord": {
+            "x": 3,
+            "y": 4
+          },
+          "char": "U",
+          "wordIds": [
+            "torq",
+            "flui"
+          ]
+        },
+        "3,5": {
+          "coord": {
+            "x": 3,
+            "y": 5
+          },
+          "char": "E",
+          "wordIds": [
+            "torq"
+          ]
+        },
+        "1,4": {
+          "coord": {
+            "x": 1,
+            "y": 4
+          },
+          "char": "F",
+          "wordIds": [
+            "flui"
+          ]
+        },
+        "2,4": {
+          "coord": {
+            "x": 2,
+            "y": 4
+          },
+          "char": "L",
+          "wordIds": [
+            "flui"
+          ]
+        },
+        "4,4": {
+          "coord": {
+            "x": 4,
+            "y": 4
+          },
+          "char": "I",
+          "wordIds": [
+            "flui"
+          ]
+        },
+        "5,4": {
+          "coord": {
+            "x": 5,
+            "y": 4
+          },
+          "char": "D",
+          "wordIds": [
+            "flui",
+            "driv"
+          ]
+        },
+        "5,5": {
+          "coord": {
+            "x": 5,
+            "y": 5
+          },
+          "char": "R",
+          "wordIds": [
+            "driv"
+          ]
+        },
+        "5,6": {
+          "coord": {
+            "x": 5,
+            "y": 6
+          },
+          "char": "I",
+          "wordIds": [
+            "driv"
+          ]
+        },
+        "5,7": {
+          "coord": {
+            "x": 5,
+            "y": 7
+          },
+          "char": "V",
+          "wordIds": [
+            "driv"
+          ]
+        },
+        "5,8": {
+          "coord": {
+            "x": 5,
+            "y": 8
+          },
+          "char": "E",
+          "wordIds": [
+            "driv"
+          ]
+        }
+      }
+    },
+    "layer-traction": {
+      "id": "layer-traction",
+      "name": "TRACTION",
+      "words": [
+        {
+          "id": "rubb",
+          "layerId": "layer-traction",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "RUBBER"
+        },
+        {
+          "id": "trea",
+          "layerId": "layer-traction",
+          "start": {
+            "x": 5,
+            "y": -1
+          },
+          "direction": "down",
+          "text": "TREAD"
+        },
+        {
+          "id": "fric",
+          "layerId": "layer-traction",
+          "start": {
+            "x": 1,
+            "y": -1
+          },
+          "direction": "across",
+          "text": "FRICTION"
+        },
+        {
+          "id": "grip",
+          "layerId": "layer-traction",
+          "start": {
+            "x": 6,
+            "y": -1
+          },
+          "direction": "down",
+          "text": "GRIP"
+        },
+        {
+          "id": "pres",
+          "layerId": "layer-traction",
+          "start": {
+            "x": 6,
+            "y": 2
+          },
+          "direction": "across",
+          "text": "PRESSURE"
+        }
+      ],
+      "comment": "Where the rubber meets the road: The tire RUBBER has TREAD to create FRICTION. This provides GRIP, provided the air PRESSURE is correct.",
+      "commentPos": {
+        "x": 10,
+        "y": 4
+      },
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "R",
+          "wordIds": [
+            "rubb"
+          ]
+        },
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "U",
+          "wordIds": [
+            "rubb"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "B",
+          "wordIds": [
+            "rubb"
+          ]
+        },
+        "3,0": {
+          "coord": {
+            "x": 3,
+            "y": 0
+          },
+          "char": "B",
+          "wordIds": [
+            "rubb"
+          ]
+        },
+        "4,0": {
+          "coord": {
+            "x": 4,
+            "y": 0
+          },
+          "char": "E",
+          "wordIds": [
+            "rubb"
+          ]
+        },
+        "5,0": {
+          "coord": {
+            "x": 5,
+            "y": 0
+          },
+          "char": "R",
+          "wordIds": [
+            "rubb",
+            "trea"
+          ]
+        },
+        "5,-1": {
+          "coord": {
+            "x": 5,
+            "y": -1
+          },
+          "char": "T",
+          "wordIds": [
+            "trea",
+            "fric"
+          ]
+        },
+        "5,1": {
+          "coord": {
+            "x": 5,
+            "y": 1
+          },
+          "char": "E",
+          "wordIds": [
+            "trea"
+          ]
+        },
+        "5,2": {
+          "coord": {
+            "x": 5,
+            "y": 2
+          },
+          "char": "A",
+          "wordIds": [
+            "trea"
+          ]
+        },
+        "5,3": {
+          "coord": {
+            "x": 5,
+            "y": 3
+          },
+          "char": "D",
+          "wordIds": [
+            "trea"
+          ]
+        },
+        "1,-1": {
+          "coord": {
+            "x": 1,
+            "y": -1
+          },
+          "char": "F",
+          "wordIds": [
+            "fric"
+          ]
+        },
+        "2,-1": {
+          "coord": {
+            "x": 2,
+            "y": -1
+          },
+          "char": "R",
+          "wordIds": [
+            "fric"
+          ]
+        },
+        "3,-1": {
+          "coord": {
+            "x": 3,
+            "y": -1
+          },
+          "char": "I",
+          "wordIds": [
+            "fric"
+          ]
+        },
+        "4,-1": {
+          "coord": {
+            "x": 4,
+            "y": -1
+          },
+          "char": "C",
+          "wordIds": [
+            "fric"
+          ]
+        },
+        "6,-1": {
+          "coord": {
+            "x": 6,
+            "y": -1
+          },
+          "char": "G",
+          "wordIds": [
+            "fric",
+            "grip"
+          ]
+        },
+        "7,-1": {
+          "coord": {
+            "x": 7,
+            "y": -1
+          },
+          "char": "O",
+          "wordIds": [
+            "fric"
+          ]
+        },
+        "8,-1": {
+          "coord": {
+            "x": 8,
+            "y": -1
+          },
+          "char": "N",
+          "wordIds": [
+            "fric"
+          ]
+        },
+        "6,0": {
+          "coord": {
+            "x": 6,
+            "y": 0
+          },
+          "char": "R",
+          "wordIds": [
+            "grip"
+          ]
+        },
+        "6,1": {
+          "coord": {
+            "x": 6,
+            "y": 1
+          },
+          "char": "I",
+          "wordIds": [
+            "grip"
+          ]
+        },
+        "6,2": {
+          "coord": {
+            "x": 6,
+            "y": 2
+          },
+          "char": "P",
+          "wordIds": [
+            "grip",
+            "pres"
+          ]
+        },
+        "7,2": {
+          "coord": {
+            "x": 7,
+            "y": 2
+          },
+          "char": "R",
+          "wordIds": [
+            "pres"
+          ]
+        },
+        "8,2": {
+          "coord": {
+            "x": 8,
+            "y": 2
+          },
+          "char": "E",
+          "wordIds": [
+            "pres"
+          ]
+        },
+        "9,2": {
+          "coord": {
+            "x": 9,
+            "y": 2
+          },
+          "char": "S",
+          "wordIds": [
+            "pres"
+          ]
+        },
+        "10,2": {
+          "coord": {
+            "x": 10,
+            "y": 2
+          },
+          "char": "S",
+          "wordIds": [
+            "pres"
+          ]
+        },
+        "11,2": {
+          "coord": {
+            "x": 11,
+            "y": 2
+          },
+          "char": "U",
+          "wordIds": [
+            "pres"
+          ]
+        },
+        "12,2": {
+          "coord": {
+            "x": 12,
+            "y": 2
+          },
+          "char": "R",
+          "wordIds": [
+            "pres"
+          ]
+        },
+        "13,2": {
+          "coord": {
+            "x": 13,
+            "y": 2
+          },
+          "char": "E",
+          "wordIds": [
+            "pres"
+          ]
+        }
+      }
+    },
+    "layer-ignition": {
+      "id": "layer-ignition",
+      "name": "IGNITION",
+      "words": [
+        {
+          "id": "coil",
+          "layerId": "layer-ignition",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "COIL"
+        },
+        {
+          "id": "plug",
+          "layerId": "layer-ignition",
+          "start": {
+            "x": 3,
+            "y": -1
+          },
+          "direction": "down",
+          "text": "PLUG"
+        },
+        {
+          "id": "gap1",
+          "layerId": "layer-ignition",
+          "start": {
+            "x": 1,
+            "y": 2
+          },
+          "direction": "across",
+          "text": "GAP"
+        },
+        {
+          "id": "arc1",
+          "layerId": "layer-ignition",
+          "start": {
+            "x": 1,
+            "y": 2
+          },
+          "direction": "down",
+          "text": "ARC"
+        }
+      ],
+      "comment": "The spark source: The ignition COIL sends power to the spark PLUG. The spark jumps the GAP in an electric ARC.",
+      "commentPos": {
+        "x": 5,
+        "y": 1
+      },
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "C",
+          "wordIds": [
+            "coil"
+          ]
+        },
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "O",
+          "wordIds": [
+            "coil"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "I",
+          "wordIds": [
+            "coil"
+          ]
+        },
+        "3,0": {
+          "coord": {
+            "x": 3,
+            "y": 0
+          },
+          "char": "L",
+          "wordIds": [
+            "coil",
+            "plug"
+          ]
+        },
+        "3,-1": {
+          "coord": {
+            "x": 3,
+            "y": -1
+          },
+          "char": "P",
+          "wordIds": [
+            "plug"
+          ]
+        },
+        "3,1": {
+          "coord": {
+            "x": 3,
+            "y": 1
+          },
+          "char": "U",
+          "wordIds": [
+            "plug"
+          ]
+        },
+        "3,2": {
+          "coord": {
+            "x": 3,
+            "y": 2
+          },
+          "char": "P",
+          "wordIds": [
+            "plug",
+            "gap1"
+          ]
+        },
+        "1,2": {
+          "coord": {
+            "x": 1,
+            "y": 2
+          },
+          "char": "A",
+          "wordIds": [
+            "gap1",
+            "arc1"
+          ]
+        },
+        "2,2": {
+          "coord": {
+            "x": 2,
+            "y": 2
+          },
+          "char": "A",
+          "wordIds": [
+            "gap1"
+          ]
+        },
+        "1,3": {
+          "coord": {
+            "x": 1,
+            "y": 3
+          },
+          "char": "R",
+          "wordIds": [
+            "arc1"
+          ]
+        },
+        "1,4": {
+          "coord": {
+            "x": 1,
+            "y": 4
+          },
+          "char": "C",
+          "wordIds": [
+            "arc1"
+          ]
+        }
+      }
+    },
+    "layer-electrical": {
+      "id": "layer-electrical",
+      "name": "ELECTRICAL",
+      "words": [
+        {
+          "id": "lead",
+          "layerId": "layer-electrical",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "LEAD"
+        },
+        {
+          "id": "acid",
+          "layerId": "layer-electrical",
+          "start": {
+            "x": 2,
+            "y": 0
+          },
+          "direction": "down",
+          "text": "ACID"
+        },
+        {
+          "id": "cell",
+          "layerId": "layer-electrical",
+          "start": {
+            "x": 2,
+            "y": 1
+          },
+          "direction": "across",
+          "text": "CELL"
+        }
+      ],
+      "comment": "Battery internals: LEAD plates submerged in sulfuric ACID form a galvanic CELL to store energy.",
+      "commentPos": {
+        "x": 6,
+        "y": 1
+      },
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "L",
+          "wordIds": [
+            "lead"
+          ]
+        },
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "E",
+          "wordIds": [
+            "lead"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "A",
+          "wordIds": [
+            "lead",
+            "acid"
+          ]
+        },
+        "3,0": {
+          "coord": {
+            "x": 3,
+            "y": 0
+          },
+          "char": "D",
+          "wordIds": [
+            "lead"
+          ]
+        },
+        "2,1": {
+          "coord": {
+            "x": 2,
+            "y": 1
+          },
+          "char": "C",
+          "wordIds": [
+            "acid",
+            "cell"
+          ]
+        },
+        "2,2": {
+          "coord": {
+            "x": 2,
+            "y": 2
+          },
+          "char": "I",
+          "wordIds": [
+            "acid"
+          ]
+        },
+        "2,3": {
+          "coord": {
+            "x": 2,
+            "y": 3
+          },
+          "char": "D",
+          "wordIds": [
+            "acid"
+          ]
+        },
+        "3,1": {
+          "coord": {
+            "x": 3,
+            "y": 1
+          },
+          "char": "E",
+          "wordIds": [
+            "cell"
+          ]
+        },
+        "4,1": {
+          "coord": {
+            "x": 4,
+            "y": 1
+          },
+          "char": "L",
+          "wordIds": [
+            "cell"
+          ]
+        },
+        "5,1": {
+          "coord": {
+            "x": 5,
+            "y": 1
+          },
+          "char": "L",
+          "wordIds": [
+            "cell"
+          ]
+        }
+      }
+    },
+    "layer-valvetrain": {
+      "id": "layer-valvetrain",
+      "name": "VALVETRAIN",
+      "words": [
+        {
+          "id": "cam1",
+          "layerId": "layer-valvetrain",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "CAM"
+        },
+        {
+          "id": "lobe",
+          "layerId": "layer-valvetrain",
+          "start": {
+            "x": 1,
+            "y": -1
+          },
+          "direction": "down",
+          "text": "LOBE"
+        },
+        {
+          "id": "lift",
+          "layerId": "layer-valvetrain",
+          "start": {
+            "x": -1,
+            "y": 1
+          },
+          "direction": "across",
+          "text": "LIFT"
+        },
+        {
+          "id": "seat",
+          "layerId": "layer-valvetrain",
+          "start": {
+            "x": -1,
+            "y": 1
+          },
+          "direction": "down",
+          "text": "SEAT"
+        }
+      ],
+      "comment": "Precision timing: The CAM shaft has a LOBE that provides LIFT to open the valve before it returns to its SEAT.",
+      "commentPos": {
+        "x": 3,
+        "y": 3
+      },
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "C",
+          "wordIds": [
+            "cam1"
+          ]
+        },
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "O",
+          "wordIds": [
+            "cam1",
+            "lobe"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "M",
+          "wordIds": [
+            "cam1"
+          ]
+        },
+        "1,-1": {
+          "coord": {
+            "x": 1,
+            "y": -1
+          },
+          "char": "L",
+          "wordIds": [
+            "lobe"
+          ]
+        },
+        "1,1": {
+          "coord": {
+            "x": 1,
+            "y": 1
+          },
+          "char": "F",
+          "wordIds": [
+            "lobe",
+            "lift"
+          ]
+        },
+        "1,2": {
+          "coord": {
+            "x": 1,
+            "y": 2
+          },
+          "char": "E",
+          "wordIds": [
+            "lobe"
+          ]
+        },
+        "-1,1": {
+          "coord": {
+            "x": -1,
+            "y": 1
+          },
+          "char": "S",
+          "wordIds": [
+            "lift",
+            "seat"
+          ]
+        },
+        "0,1": {
+          "coord": {
+            "x": 0,
+            "y": 1
+          },
+          "char": "I",
+          "wordIds": [
+            "lift"
+          ]
+        },
+        "2,1": {
+          "coord": {
+            "x": 2,
+            "y": 1
+          },
+          "char": "T",
+          "wordIds": [
+            "lift"
+          ]
+        },
+        "-1,2": {
+          "coord": {
+            "x": -1,
+            "y": 2
+          },
+          "char": "E",
+          "wordIds": [
+            "seat"
+          ]
+        },
+        "-1,3": {
+          "coord": {
+            "x": -1,
+            "y": 3
+          },
+          "char": "A",
+          "wordIds": [
+            "seat"
+          ]
+        },
+        "-1,4": {
+          "coord": {
+            "x": -1,
+            "y": 4
+          },
+          "char": "T",
+          "wordIds": [
+            "seat"
+          ]
+        }
+      }
+    },
+    "layer-emissions": {
+      "id": "layer-emissions",
+      "name": "EMISSIONS",
+      "words": [
+        {
+          "id": "pipe",
+          "layerId": "layer-emissions",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "PIPE"
+        },
+        {
+          "id": "muff",
+          "layerId": "layer-emissions",
+          "start": {
+            "x": 3,
+            "y": -1
+          },
+          "direction": "down",
+          "text": "MUFFLER"
+        },
+        {
+          "id": "flow",
+          "layerId": "layer-emissions",
+          "start": {
+            "x": 1,
+            "y": 1
+          },
+          "direction": "across",
+          "text": "FLOW"
+        }
+      ],
+      "comment": "Cleaning the air: Exhaust travels through the tail PIPE and MUFFLER to regulate gas FLOW and noise.",
+      "commentPos": {
+        "x": 6,
+        "y": 2
+      },
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "P",
+          "wordIds": [
+            "pipe"
+          ]
+        },
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "I",
+          "wordIds": [
+            "pipe"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "P",
+          "wordIds": [
+            "pipe"
+          ]
+        },
+        "3,0": {
+          "coord": {
+            "x": 3,
+            "y": 0
+          },
+          "char": "U",
+          "wordIds": [
+            "pipe",
+            "muff"
+          ]
+        },
+        "3,-1": {
+          "coord": {
+            "x": 3,
+            "y": -1
+          },
+          "char": "M",
+          "wordIds": [
+            "muff"
+          ]
+        },
+        "3,1": {
+          "coord": {
+            "x": 3,
+            "y": 1
+          },
+          "char": "O",
+          "wordIds": [
+            "muff",
+            "flow"
+          ]
+        },
+        "3,2": {
+          "coord": {
+            "x": 3,
+            "y": 2
+          },
+          "char": "F",
+          "wordIds": [
+            "muff"
+          ]
+        },
+        "3,3": {
+          "coord": {
+            "x": 3,
+            "y": 3
+          },
+          "char": "L",
+          "wordIds": [
+            "muff"
+          ]
+        },
+        "3,4": {
+          "coord": {
+            "x": 3,
+            "y": 4
+          },
+          "char": "E",
+          "wordIds": [
+            "muff"
+          ]
+        },
+        "3,5": {
+          "coord": {
+            "x": 3,
+            "y": 5
+          },
+          "char": "R",
+          "wordIds": [
+            "muff"
+          ]
+        },
+        "1,1": {
+          "coord": {
+            "x": 1,
+            "y": 1
+          },
+          "char": "F",
+          "wordIds": [
+            "flow"
+          ]
+        },
+        "2,1": {
+          "coord": {
+            "x": 2,
+            "y": 1
+          },
+          "char": "L",
+          "wordIds": [
+            "flow"
+          ]
+        },
+        "4,1": {
+          "coord": {
+            "x": 4,
+            "y": 1
+          },
+          "char": "W",
+          "wordIds": [
+            "flow"
+          ]
+        }
+      }
+    },
+    "layer-combustion-chem": {
+      "id": "layer-combustion-chem",
+      "name": "COMBUSTION CHEMISTRY",
+      "words": [
+        {
+          "id": "fuel",
+          "layerId": "layer-combustion-chem",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "FUEL"
+        },
+        {
+          "id": "lean",
+          "layerId": "layer-combustion-chem",
+          "start": {
+            "x": 3,
+            "y": -1
+          },
+          "direction": "down",
+          "text": "LEAN"
+        },
+        {
+          "id": "atom",
+          "layerId": "layer-combustion-chem",
+          "start": {
+            "x": 1,
+            "y": 1
+          },
+          "direction": "across",
+          "text": "ATOM"
+        }
+      ],
+      "comment": "Molecular reaction: FUEL is mixed with air; if there is too much air, the mixture is LEAN. Heat breaks the ATOM bonds.",
+      "commentPos": {
+        "x": 5,
+        "y": 2
+      },
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "F",
+          "wordIds": [
+            "fuel"
+          ]
+        },
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "U",
+          "wordIds": [
+            "fuel"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "E",
+          "wordIds": [
+            "fuel"
+          ]
+        },
+        "3,0": {
+          "coord": {
+            "x": 3,
+            "y": 0
+          },
+          "char": "E",
+          "wordIds": [
+            "fuel",
+            "lean"
+          ]
+        },
+        "3,-1": {
+          "coord": {
+            "x": 3,
+            "y": -1
+          },
+          "char": "L",
+          "wordIds": [
+            "lean"
+          ]
+        },
+        "3,1": {
+          "coord": {
+            "x": 3,
+            "y": 1
+          },
+          "char": "O",
+          "wordIds": [
+            "lean",
+            "atom"
+          ]
+        },
+        "3,2": {
+          "coord": {
+            "x": 3,
+            "y": 2
+          },
+          "char": "N",
+          "wordIds": [
+            "lean"
+          ]
+        },
+        "1,1": {
+          "coord": {
+            "x": 1,
+            "y": 1
+          },
+          "char": "A",
+          "wordIds": [
+            "atom"
+          ]
+        },
+        "2,1": {
+          "coord": {
+            "x": 2,
+            "y": 1
+          },
+          "char": "T",
+          "wordIds": [
+            "atom"
+          ]
+        },
+        "4,1": {
+          "coord": {
+            "x": 4,
+            "y": 1
+          },
+          "char": "M",
+          "wordIds": [
+            "atom"
+          ]
+        }
+      }
+    },
+    "layer-thermodynamics": {
+      "id": "layer-thermodynamics",
+      "name": "THERMODYNAMICS",
+      "words": [
+        {
+          "id": "heat",
+          "layerId": "layer-thermodynamics",
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "direction": "across",
+          "text": "HEAT"
+        },
+        {
+          "id": "work",
+          "layerId": "layer-thermodynamics",
+          "start": {
+            "x": 3,
+            "y": -1
+          },
+          "direction": "down",
+          "text": "WORK"
+        },
+        {
+          "id": "loss",
+          "layerId": "layer-thermodynamics",
+          "start": {
+            "x": 1,
+            "y": 1
+          },
+          "direction": "across",
+          "text": "LOSS"
+        }
+      ],
+      "comment": "Energy conversion: HEAT from combustion is converted into mechanical WORK, though some is always a thermal LOSS.",
+      "commentPos": {
+        "x": 5,
+        "y": 2
+      },
+      "cellsByKey": {
+        "0,0": {
+          "coord": {
+            "x": 0,
+            "y": 0
+          },
+          "char": "H",
+          "wordIds": [
+            "heat"
+          ]
+        },
+        "1,0": {
+          "coord": {
+            "x": 1,
+            "y": 0
+          },
+          "char": "E",
+          "wordIds": [
+            "heat"
+          ]
+        },
+        "2,0": {
+          "coord": {
+            "x": 2,
+            "y": 0
+          },
+          "char": "A",
+          "wordIds": [
+            "heat"
+          ]
+        },
+        "3,0": {
+          "coord": {
+            "x": 3,
+            "y": 0
+          },
+          "char": "O",
+          "wordIds": [
+            "heat",
+            "work"
+          ]
+        },
+        "3,-1": {
+          "coord": {
+            "x": 3,
+            "y": -1
+          },
+          "char": "W",
+          "wordIds": [
+            "work"
+          ]
+        },
+        "3,1": {
+          "coord": {
+            "x": 3,
+            "y": 1
+          },
+          "char": "S",
+          "wordIds": [
+            "work",
+            "loss"
+          ]
+        },
+        "3,2": {
+          "coord": {
+            "x": 3,
+            "y": 2
+          },
+          "char": "K",
+          "wordIds": [
+            "work"
+          ]
+        },
+        "1,1": {
+          "coord": {
+            "x": 1,
+            "y": 1
+          },
+          "char": "L",
+          "wordIds": [
+            "loss"
+          ]
+        },
+        "2,1": {
+          "coord": {
+            "x": 2,
+            "y": 1
+          },
+          "char": "O",
+          "wordIds": [
+            "loss"
+          ]
+        },
+        "4,1": {
+          "coord": {
+            "x": 4,
+            "y": 1
+          },
+          "char": "S",
+          "wordIds": [
+            "loss"
+          ]
+        }
       }
     }
   }
+}

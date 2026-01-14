@@ -21,7 +21,9 @@ import {
   HelpCircle,
   GitBranch,
   Sun,
-  Moon
+  Moon,
+  Box,
+  LayoutGrid
 } from 'lucide-react';
 import { downloadJson } from '../model/serialize';
 import { calculateStability } from '../model/validator';
@@ -53,7 +55,9 @@ export const Toolbar: React.FC = () => {
     toggleLeftPanel,
     toggleRightPanel,
     theme,
-    toggleTheme
+    toggleTheme,
+    viewMode,
+    setViewMode
   } = useMnemonicStore();
 
   const [presetsOpen, setPresetsOpen] = React.useState(false);
@@ -107,7 +111,7 @@ export const Toolbar: React.FC = () => {
         {/* Mobile Drawer Toggles */}
         <button 
           onClick={toggleLeftPanel}
-          className={`md:hidden flex items-center justify-center p-2 border-2 border-black dark:border-white transition-colors ${leftPanelOpen ? 'bg-black dark:bg-white text-white dark:text-black' : 'bg-white dark:bg-transparent text-black dark:text-white'}`}
+          className={`flex items-center justify-center p-2 border-2 border-black dark:border-white transition-colors ${leftPanelOpen ? 'bg-black dark:bg-white text-white dark:text-black' : 'bg-white dark:bg-transparent text-black dark:text-white'}`}
           title="Toggle Roots Panel"
         >
           <GitBranch size={20} />
@@ -245,6 +249,23 @@ export const Toolbar: React.FC = () => {
 
           <div className="flex border-2 border-black dark:border-white divide-x-2 divide-black dark:divide-white shrink-0">
             <button 
+              onClick={() => setViewMode('grid2d')}
+              className={`p-2 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors ${viewMode === 'grid2d' ? 'bg-black dark:bg-white text-white dark:text-black' : 'text-black dark:text-white'}`}
+              title="2D Grid Mode"
+            >
+              <LayoutGrid size={20} />
+            </button>
+            <button 
+              onClick={() => setViewMode('map3d')}
+              className={`p-2 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors ${viewMode === 'map3d' ? 'bg-black dark:bg-white text-white dark:text-black' : 'text-black dark:text-white'}`}
+              title="3D Map Mode"
+            >
+              <Box size={20} />
+            </button>
+          </div>
+
+          <div className="flex border-2 border-black dark:border-white divide-x-2 divide-black dark:divide-white shrink-0">
+            <button 
               onClick={toggleTheme}
               className="p-2 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors text-black dark:text-white"
               title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
@@ -295,10 +316,10 @@ export const Toolbar: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile Drawer Toggle (Right) */}
+          {/* Panel Toggles (Right) */}
           <button 
             onClick={toggleRightPanel}
-            className={`md:hidden flex items-center justify-center p-2 border-2 border-black dark:border-white transition-colors ${rightPanelOpen ? 'bg-black dark:bg-white text-white dark:text-black' : 'bg-white dark:bg-transparent text-black dark:text-white'}`}
+            className={`flex items-center justify-center p-2 border-2 border-black dark:border-white transition-colors ${rightPanelOpen ? 'bg-black dark:bg-white text-white dark:text-black' : 'bg-white dark:bg-transparent text-black dark:text-white'}`}
             title="Toggle Word List"
           >
             <Layers size={20} />

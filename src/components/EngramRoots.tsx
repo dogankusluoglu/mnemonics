@@ -39,7 +39,7 @@ export const EngramRoots: React.FC = () => {
   };
 
   return (
-    <div className="w-64 max-w-[calc(100vw-48px)] border-r-4 border-black dark:border-white bg-white dark:bg-[#0a0a0a] flex flex-col z-40 h-full overflow-hidden shrink-0">
+    <div className="w-64 max-w-[calc(100vw-48px)] bg-white dark:bg-[#0a0a0a] flex flex-col z-40 h-full overflow-hidden shrink-0">
       <div className="p-2 px-3 flex items-center gap-2 border-b border-gray-100 dark:border-white/10 bg-gray-50 dark:bg-white/5">
         <GitBranch size={12} className="opacity-50 text-black dark:text-white" />
         <span className="text-[10px] font-black uppercase tracking-widest opacity-50 text-black dark:text-white">Engram Roots</span>

@@ -51,6 +51,7 @@ interface MnemonicState {
   navStack: string[]; // for breadcrumbs
   
   // UI State
+  viewMode: 'grid2d' | 'map3d';
   activeCell: Coord | null;
   activeDirection: Direction;
   selectedWordId: string | null;
@@ -89,6 +90,7 @@ interface MnemonicActions {
   popLayer: () => void;
   
   // UI Interaction
+  setViewMode: (mode: 'grid2d' | 'map3d') => void;
   setActiveCell: (coord: Coord | null) => void;
   toggleDirection: () => void;
   setSelectedWord: (wordId: string | null) => void;
@@ -148,6 +150,7 @@ export const useMnemonicStore = create<MnemonicState & MnemonicActions>((set, ge
   activeLayerId: INITIAL_LAYER_ID,
   navStack: [INITIAL_LAYER_ID],
   
+  viewMode: 'grid2d',
   activeCell: null,
   activeDirection: 'across',
   selectedWordId: null,
@@ -155,7 +158,7 @@ export const useMnemonicStore = create<MnemonicState & MnemonicActions>((set, ge
   commentsVisible: true,
   helpVisible: true,
   welcomeModalVisible: true,
-  leftPanelOpen: false,
+  leftPanelOpen: true,
   rightPanelOpen: false,
   currentDraft: '',
   camera: { scale: 1, positionX: 0, positionY: 0 },
@@ -176,6 +179,8 @@ export const useMnemonicStore = create<MnemonicState & MnemonicActions>((set, ge
   },
 
   setActiveLayer: (layerId) => set({ activeLayerId: layerId }),
+
+  setViewMode: (mode) => set({ viewMode: mode }),
   
   pushLayer: (layerId) => set((state) => ({ 
     navStack: [...state.navStack, layerId],

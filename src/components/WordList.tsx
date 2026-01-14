@@ -9,7 +9,7 @@ export const WordList: React.FC = () => {
   const activeLayer = doc.layersById[activeLayerId];
 
   return (
-    <div className="w-80 max-w-[calc(100vw-48px)] border-l-4 border-black dark:border-white bg-white dark:bg-[#0a0a0a] flex flex-col z-40 h-full overflow-hidden">
+    <div className="w-80 max-w-[calc(100vw-48px)] bg-white dark:bg-[#0a0a0a] flex flex-col z-40 h-full overflow-hidden">
       {/* How it Works / Help Section */}
       <div className="shrink-0 flex flex-col border-b-2 border-black dark:border-white">
         <button 
