@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, Suspense, useRef, useEffect } from 'react';
+import React, { useMemo, useState, useCallback, Suspense, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { 
   OrbitControls, 
@@ -22,6 +22,7 @@ const COLORS = {
   selected: "#ffffff",
   incoming: "#00ff88", // Neon Green
   outgoing: "#00ccff", // Neon Blue
+  highlight: "#ffffff",
   bgDark: "#111111",    // Neutral Dark Gray
   bgLight: "#f8fafc",
   gridColor: "#333333",
@@ -144,9 +145,6 @@ const WordNode = React.memo(({
           outlineColor="#000000"
           outlineWidth={0.02}
           outlineOpacity={opacity * 0.8}
-          onError={(e) => {
-            console.warn("Font loading error for JetBrains Mono, falling back to default:", e);
-          }}
         >
           {node.text.toUpperCase()}
         </Text>

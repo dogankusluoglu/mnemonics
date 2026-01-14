@@ -25,7 +25,6 @@ export const RouteDiagram: React.FC = () => {
       incomingEdgesByNode.get(e.endNodeId)!.push(e);
     });
 
-    const sequence: MapNode[] = [];
     const visited = new Set<string>();
 
     // 1. Trace Ancestry (Upstream)
@@ -37,7 +36,7 @@ export const RouteDiagram: React.FC = () => {
       visited.add(currId);
       ancestry.unshift(node);
       
-      const incoming = incomingEdgesByNode.get(currId) || [];
+      const incoming: MapEdge[] = incomingEdgesByNode.get(currId) || [];
       // In this tree structure, nodes have one primary parent (either chain or ladder)
       currId = incoming[0]?.startNodeId;
     }
