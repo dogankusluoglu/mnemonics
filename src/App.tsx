@@ -6,6 +6,7 @@ import { Breadcrumbs } from './components/Breadcrumbs';
 import { WordList } from './components/WordList';
 import { EngramRoots } from './components/EngramRoots';
 import { WelcomeModal } from './components/WelcomeModal';
+import { RouteDiagram } from './components/RouteDiagram';
 import { useMnemonicStore } from './store/useMnemonicStore';
 import { useEffect } from 'react';
 
@@ -24,6 +25,7 @@ function App() {
     <div className="flex flex-col h-screen w-full bg-white dark:bg-[#0a0a0a] font-mono text-black dark:text-white selection:bg-black dark:selection:bg-white selection:text-white dark:selection:text-black overflow-hidden">
       <Toolbar />
       <WelcomeModal />
+      <RouteDiagram />
       <Breadcrumbs />
       <div className="flex flex-grow relative overflow-hidden">
         {/* Mobile Backdrop */}
