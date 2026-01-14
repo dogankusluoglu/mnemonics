@@ -102,14 +102,12 @@ interface ConnectionProps {
   edge: MapEdge;
   isHighlighted: boolean;
   isDimmed: boolean;
-  theme: 'light' | 'dark';
 }
 
 const Connection = React.memo(({ 
   edge, 
   isHighlighted, 
-  isDimmed,
-  theme 
+  isDimmed
 }: ConnectionProps) => {
   const opacity = isDimmed ? 0.05 : (isHighlighted ? 0.8 : 0.4);
   
@@ -254,7 +252,6 @@ export const ThreeMapViewport: React.FC = () => {
                   edge={edge} 
                   isHighlighted={isHighlighted} 
                   isDimmed={isDimmed}
-                  theme={theme}
                 />
               );
             })}

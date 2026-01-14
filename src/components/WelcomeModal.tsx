@@ -4,7 +4,6 @@ import { useMnemonicStore } from '../store/useMnemonicStore';
 import { 
   X, 
   Layers, 
-  BookOpen, 
   MousePointer2, 
   Keyboard,
   Star,
